@@ -6,7 +6,7 @@
 #    By: ykarimi <ykarimi@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/05/29 10:38:04 by ykarimi       #+#    #+#                  #
-#    Updated: 2024/05/29 15:27:27 by ykarimi       ########   odam.nl          #
+#    Updated: 2024/05/29 15:47:57 by ykarimi       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,9 @@ $(GNL):
 	make -C lib/get_next_line
 
 $(MLX42):
+	gcc main.c ... libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
 	make -C lib/MLX42
+	cc main.c -Wall -Wextra lib/MLX42/build/libmlx42.a -I[mlx42_folder]/include -ldl -lglfw -pthread -lm
 
 clean:
 	make -C lib/libft clean

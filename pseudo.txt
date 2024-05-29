@@ -1,0 +1,64 @@
+
+is_map_valid()
+{
+	is_component_count_valid();
+	is_rectangular();
+	is_walled();
+	is_path_valid();
+}
+
+
+
+
+
+
+init_game()
+{
+	init_data();
+	innit_mlx();
+	init_img();
+}
+start_game()
+{
+	render_assets();
+	render_map();
+	setup_event_listeners();
+	other setups;
+}
+bring_game_to_life()
+{
+	setup loopy things;
+}
+
+so_long()
+{
+	init_game();
+	start_game();
+	bring_game_to_life();
+	end_game();
+}
+
+parse_input()
+{
+	is_extension_valid();
+	read_input();
+	is_map_valid();
+	
+}
+
+main()
+{
+	if agrc != 2
+		exit
+	parse_input();
+	so_long();
+	cleanup();
+	return ();
+}
+
+
+cleanup()
+{
+    put_text()
+    display_error_exit();
+}
