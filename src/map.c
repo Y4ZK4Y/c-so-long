@@ -1,6 +1,6 @@
-#include "so_long.h"
+// #include "so_long.h"
 
-void    map(int agrc, char **argv)
-{
+// void    map(int agrc, char **argv)
+// {
     
-}
+// }

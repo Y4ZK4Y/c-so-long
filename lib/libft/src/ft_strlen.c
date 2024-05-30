@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/20 11:09:26 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/01/05 20:30:46 by yasamankari   ########   odam.nl         */
+/*   Updated: 2024/05/30 18:40:55 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 size_t	ft_strlen(const char *s)
 {
 	size_t	i;
-
+	if (!s)
+		return (0);
 	i = 0;
 	while (s[i] != '\0')
 		i++;
