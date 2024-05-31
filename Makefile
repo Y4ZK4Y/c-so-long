@@ -6,14 +6,14 @@
 #    By: ykarimi <ykarimi@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/05/29 10:38:04 by ykarimi       #+#    #+#                  #
-#    Updated: 2024/05/30 17:17:20 by ykarimi       ########   odam.nl          #
+#    Updated: 2024/05/31 16:04:25 by ykarimi       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := so_long
 CC := cc
 CFLAGS := -Wall -Wextra -Werror
-#MLX42FLAGS = -lglfw
+MLX42FLAGS = -lglfw
 INCLUDES := -I./include -I./lib/libft/include -I./lib/get_next_line/include -I./lib/MLX42/include/MLX42
 BUILD_DIR := build
 SRC_DIR := src
@@ -33,7 +33,7 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME): $(LIBFT) $(GNL) $(MLX42) $(OBJS) 
-	$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) $(LIBFT) $(GNL) $(MLX42) $(LIBFT) -o $(NAME)
+	$(CC) $(CFLAGS) $(INCLUDES) $(MLX42FLAGS) $(OBJS) $(LIBFT) $(GNL) $(MLX42) $(LIBFT) -o $(NAME)
 	
 $(LIBFT):
 	$(MAKE) -C lib/libft
@@ -57,7 +57,7 @@ clean:
 fclean: clean
 	$(MAKE) -C lib/libft fclean
 	$(MAKE) -C lib/get_next_line fclean
-	$(MAKE) -C lib/MLX42 fclean
+	#$(MAKE) -C lib/MLX42 fclean
 	rm -f $(NAME).a
 	
 

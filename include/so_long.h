@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 10:43:26 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/05/30 17:51:32 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/05/31 16:47:44 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,39 +28,51 @@
 #include <sys/stat.h>
 
 
-// # define WINDOW_WIDTH
-// # define WINDOW_HEIGHT
+# define WINDOW_WIDTH 512
+# define WINDOW_HEIGHT 512
 
-// typedef struct s_game
-// {
-// 	t_entity	*entities; // array of entities
-// 	int			num_entities;
-// 	t_input		input;
-// 	t_moves		moves;
-// 	t_map		map;
-// 	t_sprite	walls;
-// 	t_sprite	background;
-// 	t_sprite	exit;
-// 	t_sprite	entrance;
-	
-
-	
-// }	t_game;
 
 typedef struct s_map
 {
 	char		**map_input;
 	int			rows;
 	int			cols;
-	int			tile_size;
-	int			**tiles; //2d array of tile indices
+	//int			tile_size;
+	//int			**tiles; //2d array of tile indices
 	//t_sprite	*tileset; // array of tile sprites
 	// int			num_tileset; // num of tile sprites
 	// void		*win_ptr;
 	// void		*mlx_ptr;
 	
 	
-}			t_map;
+} t_map;
+
+typedef struct s_entity
+{
+	float	x;
+	float	y;
+	int		width;
+	int		height;
+	int		type;
+	void	*img;
+}	t_entity;
+
+
+
+typedef struct s_game
+{
+	t_map		*map;
+	t_entity	*player; // i dont know just yet, an entity for every element
+	t_entity	*collectibles;
+	t_entity	*background;
+	t_entity	*walls;
+	t_entity	*entrance;
+	t_entity	*exit;
+	mlx_t		*mlx;
+	
+}				t_game;
+
+
 
 // typedef struct s_moves
 // {
@@ -78,14 +90,6 @@ typedef struct s_map
 // }	t_input;
 
 
-// typedef struct s_entity
-// {
-// 	float	x;
-// 	float	y;
-// 	int		width;
-// 	int		height;
-// 	int		type;
-// }	t_entity;
 
 
 
@@ -99,15 +103,15 @@ typedef struct s_map
 
 
 
-// typedef enum
-// {
-// 	PLAYER,
-// 	ENEMY,
-// 	COLLECTIBLE,
-// 	WALL,
-// 	ENTRANCE,
-// 	EXIT,
-// } EntityType;
+typedef enum
+{
+	PLAYER,
+	ENEMY,
+	COLLECTIBLE,
+	WALL,
+	ENTRANCE,
+	EXIT,
+} EntityType;
 
 
 // typedef enum
@@ -125,13 +129,13 @@ typedef struct s_map
 // // } 
 
 
-// typedef enum
-// {
-// 	SUCCES,
-// 	ERROR_INIT,
-// 	ERROR_LOAD_SPRITE,
-// 	ERROR_GAME_LOOP,
-// } ErrorCode;
+typedef enum
+{
+	SUCCES,
+	ERROR_INIT,
+	ERROR_LOAD_SPRITE,
+	ERROR_GAME_LOOP,
+} ErrorCode;
 
 
 /* Parsing */
@@ -148,5 +152,11 @@ bool	is_walled(t_map *map_data);
 /* error handling */
 void	display_error_exit(const char *errmsg, int exit_code);
 
+int		so_long(t_game *game);
+int		game_init(t_game *game);
+int		init_mlx(t_game *game);
+int		init_entity(t_entity **entity);
+int 	game_start(t_game *game);
+int render_window(t_game *game);
 
 #endif

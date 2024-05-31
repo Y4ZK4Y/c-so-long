@@ -16,7 +16,7 @@ init game state
 game_init()
 {
 	init_data();
-	innit_mlx();
+	init_mlx();
 	init_img();
 }
 

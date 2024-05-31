@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 16:16:09 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/05/30 18:39:05 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/05/31 13:34:30 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,22 @@ int	read_input(t_map *map_data, const char *filename)
 			return (1);
 		map_data->map_input[i] = line;
 		if (i == 0)
+		{
 			map_data->cols = strlen(line);
+			 if (line[map_data->cols - 1] == '\n')
+        map_data->cols--;
+		}
 		i++;
 	}
 	map_data->rows = i;
-	//map_input[i] = NULL; // null-terminatin?
+	map_data->map_input[i] = NULL; // null-terminatin?
+	//printf("map_data->map_input[%d] = %p\n", i, (void *)map_data->map_input[i]);
 	close(fd);
+
+	// for (int k = 0; map_data->map_input[k] != NULL; k++)
+	// {
+	// 	printf("%s\n", map_data->map_input[k]);
+	// }
 	return (0);
 }
 
@@ -46,8 +56,8 @@ t_map	*init_map_data(t_map *map_data)
 	map_data->map_input = NULL;
 	map_data->rows = 0;
 	map_data->cols = 0;
-	map_data->tile_size = 0;
-	map_data->tiles = NULL;
+	//map_data->tile_size = 0;
+	//map_data->tiles = NULL;
 	
 
 	return (map_data);
@@ -75,10 +85,17 @@ int	parse_input(char *filename)
 	if (map_data == NULL)
 		return (1);
 	map_data = init_map_data(map_data);
-	if (!read_input(map_data, filename))
+	if (read_input(map_data, filename) == 1)
+	{
+		printf("exit thing\n");
 		return (1);
-	printf("%d\n", map_data->rows);
-	if (is_map_valid(map_data))
+	}
+		
+	if (is_map_valid(map_data) == 1)
+	{
+		printf("is map valid failed\n");
 		return (1);
+	}
+	printf("succes in parse_input\n");
 	return (0);
 }

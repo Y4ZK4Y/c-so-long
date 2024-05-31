@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   game_start.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/05/29 15:53:07 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/05/31 16:14:17 by ykarimi       ########   odam.nl         */
+/*   Created: 2024/05/31 13:27:11 by ykarimi       #+#    #+#                 */
+/*   Updated: 2024/05/31 16:49:40 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 
-int main(int argc, char **argv)
-{
-	t_game	*game = NULL;
 
-	if (argc != 2)
-		display_error_exit("few arguments provided.", EXIT_FAILURE);
-	if (parse_input(argv[1]) == 1)
-		display_error_exit("parsing failed.", EXIT_FAILURE);
-	game = malloc(sizeof(t_game));
-	if (game == NULL)
+int render_window(t_game *game)
+{
+	void	*mlx_win;
+	mlx_win = mlx_new_window(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "GAME WINDOW");
+    mlx_loop(game->mlx);
+    return 0;
+}
+
+
+int game_start(t_game *game)
+{
+    
+	if (render_window(game) == 1)
     {
-        printf("Failed to allocate memory for game(inside main)\n");
+        printf("render_window function failed\n");
         return (1);
     }
-	if (so_long(game) == 1)
-		display_error_exit("so_long failed", EXIT_FAILURE);
-	
-	
-
-	return (0);
+	// render_map();
+	// render_entitties(); // including background, etc
+	// event_listerner();
+	return 0;
 }
