@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 10:43:26 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/05/31 16:47:44 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/06/04 17:18:51 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,13 @@ typedef struct s_map
 
 typedef struct s_entity
 {
-	float	x;
-	float	y;
-	int		width;
-	int		height;
-	int		type;
-	void	*img;
+	float			x;
+	float			y;
+	int				width;
+	int				height;
+	int				type;
+	mlx_image_t		*img;
+	mlx_texture_t	*texture;
 }	t_entity;
 
 
@@ -69,6 +70,7 @@ typedef struct s_game
 	t_entity	*entrance;
 	t_entity	*exit;
 	mlx_t		*mlx;
+	mlx_image_t	*window;
 	
 }				t_game;
 
@@ -103,16 +105,6 @@ typedef struct s_game
 
 
 
-typedef enum
-{
-	PLAYER,
-	ENEMY,
-	COLLECTIBLE,
-	WALL,
-	ENTRANCE,
-	EXIT,
-} EntityType;
-
 
 // typedef enum
 // {
@@ -129,13 +121,13 @@ typedef enum
 // // } 
 
 
-typedef enum
-{
-	SUCCES,
-	ERROR_INIT,
-	ERROR_LOAD_SPRITE,
-	ERROR_GAME_LOOP,
-} ErrorCode;
+// typedef enum
+// {
+// 	SUCCES,
+// 	ERROR_INIT,
+// 	ERROR_LOAD_SPRITE,
+// 	ERROR_GAME_LOOP,
+// } ErrorCode;
 
 
 /* Parsing */
@@ -157,6 +149,28 @@ int		game_init(t_game *game);
 int		init_mlx(t_game *game);
 int		init_entity(t_entity **entity);
 int 	game_start(t_game *game);
+
 int render_window(t_game *game);
+// int	load_assets(t_game *game);
+// int	load_map(t_game *game);
+// int	load_collectibles(t_game *game);
+// int	load_player(t_game *game);
+
+
+// int	load_walls(t_game *game);
+// int	load_background(t_game *game);
+// int	load_exit(t_game *game);
+//int	load_entrance(t_game *game);
+
+void draw_entity(t_game *game, t_entity *entity, int row, int col);
+void render_static_elements(t_game *game);
+int render_dynamic_elements(t_game *game);
+int	load_entity(t_game *game, t_entity *entity,  const char *filepath);
+
+
+// int move_right(t_game *game);
+// int move_left(t_game *game);
+// int move_down(t_game *game);
+// int move_up(t_game *game);
 
 #endif

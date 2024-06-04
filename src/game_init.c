@@ -6,22 +6,17 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/31 12:44:58 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/05/31 16:18:50 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/06/04 16:51:55 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 
-// init_img()
-// {
-// 	mlx_image_t	*img;
-	
-// }
 
 // init_data()
 // {
-// 	// init everything
+// 	// init everything that's left
 	
 // }
 
@@ -44,10 +39,8 @@ int	init_entity(t_entity **entity)
 
 
 
-
 int	init_mlx(t_game *game)
 {
-	//void	*mlx_win;
 	if (game == NULL)
     {
         printf("game pointer is NULL, msg from init_mlx\n");
@@ -59,7 +52,6 @@ int	init_mlx(t_game *game)
 		printf("mlx init failed from the inside\n");
 		return (1);
 	}
-	//mlx_win = mlx_new_window(mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	return (0);
 }
 
@@ -106,11 +98,9 @@ int	game_init(t_game *game)
 		printf("exit init failed\n");
 		return (1);
 	}
-	//init_image();
 	
 	//init_data(); // init anything that's left
 	
-	// init_img();
 	return (0);
 	
 }

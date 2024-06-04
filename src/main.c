@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 15:53:07 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/05/31 16:14:17 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/06/04 16:48:40 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int main(int argc, char **argv)
 	if (so_long(game) == 1)
 		display_error_exit("so_long failed", EXIT_FAILURE);
 	
-	
+	// cleanup(); // clean game struct and all else
 
 	return (0);
 }

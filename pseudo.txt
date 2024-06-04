@@ -31,7 +31,7 @@ init_img()
 }
 game_start()
 {
-	render_assets();
+	render_assets(); // load
 	render_map();
 	setup_event_listeners();
 	other setups;
@@ -78,4 +78,19 @@ cleanup()
 {
     put_text()
     display_error_exit();
+}
+
+
+while (game_state == PLAYING)
+{
+    // Game loop goes here
+
+    if (/* player has won */)
+    {
+        game_state = VICTORY;
+    }
+    else if (/* player has lost */)
+    {
+        game_state = GAME_OVER;
+    }
 }
