@@ -6,10 +6,10 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/06/04 16:34:16 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/04 16:34:45 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/06/05 14:51:56 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+//#include "so_long.h"
 
 // mlx_terminate
