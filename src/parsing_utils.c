@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 16:52:55 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/05/31 11:23:07 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/06/07 12:37:45 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,15 @@ int	count_component(t_map *map_data, int component)
 	i = 0;
 	while (i < map_data->rows && map_data->map_input[i] != NULL)
 	{
+		//printf("Row: %d\n", i);
 		j = 0;
 		while (j < map_data->cols)
 		{
+			//printf("Column: %d\n", j);
 			if (map_data->map_input[i][j] == component)
+			{
 				count++;
+			}
 			j++;
 		}
 		i++;

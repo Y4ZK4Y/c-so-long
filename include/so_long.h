@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 10:43:26 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/05 16:46:30 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/06/07 11:09:54 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ typedef struct s_game
 /* Parsing */
 int		parse_input(t_game *game, char *filename);
 bool	is_extension_valid(char *filename);
-char	*read_input(t_map *map_data, const char *filename);
+char	*read_input(const char *filename);
 //int		read_input(t_map	*map_data, const char *filename);
 void	init_map_data(t_map **map_data);
 int		is_map_valid(t_map *map_data);
@@ -180,3 +180,28 @@ void	free_map(t_map *map);
 void init_main_struct(t_game *game);
 //void	remove_mlx_images(t_game *game);
 #endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+// int	read_input(t_map *map, const char *filename)
+// {
+// 	int i;
+// 	char *line;
+// 	int fd;
+
+// 	i = 0;
+
+// 	if ((fd = open(filename, O_RDONLY)) == -1)
+// 		printf(" :(\n");
+	
+// }

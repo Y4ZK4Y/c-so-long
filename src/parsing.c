@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 16:16:09 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/05 16:46:09 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/06/07 15:46:14 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,11 @@
 
 
 
-char	*read_input(t_map *map_data, const char *filename)
+char	*read_input(const char *filename)
 {
 	char	*line;
 	char	*line_joined;
+	char *temp;
 	int		fd;
 	int		i;
 
@@ -74,12 +75,17 @@ char	*read_input(t_map *map_data, const char *filename)
 		line = get_next_line(fd);
 		if (line)
 		{
-			line_joined = ft_strjoin(line_joined, line);
+			
+			temp= ft_strjoin(line_joined, line);
+			free(line_joined);
+			line_joined = temp;
 			free(line);
+			line = NULL;
 		}
 		else
 			break;
 	}
+	printf("<%s>\n", line_joined);
 	close(fd);
 	return (line_joined);
 }
@@ -96,7 +102,29 @@ void	init_map_data(t_map **map_data)
 	//map_data->tiles = NULL;
 
 }
+static void find_cols(t_map *map_data)
+{
+    int col_count = 0;
 
+    while (map_data->map_input[col_count] != NULL)
+    {
+        col_count++;
+    }
+
+    map_data->rows = col_count;
+}
+
+static void find_rows(t_map *map_data)
+{
+    int row_count = 0;
+
+    if (map_data->map_input[0] != NULL)
+    {
+        row_count = strlen(map_data->map_input[0]);
+    }
+
+    map_data->cols = row_count;
+}
 
 
 bool	is_extension_valid(char *filename)
@@ -113,6 +141,9 @@ bool	is_extension_valid(char *filename)
 int	parse_input(t_game *game, char *filename)
 {
 	t_map	*map_data;
+	char	*map_str;
+	
+	//char	**map_arr;
 
 	map_data = malloc(sizeof(t_map));
 	if (map_data == NULL)
@@ -125,12 +156,25 @@ int	parse_input(t_game *game, char *filename)
 		return (1);
 	
 	init_map_data(&map_data);
-	if (read_input(map_data, filename) == 1)
-	{
-		printf("read input got fucekd from parse input func\n");
-		return (1);
-	}
-		
+	
+
+	map_str = read_input(filename);
+	//map_arr = ft_split(map_str, '\n');
+	//game->map->map_input = ft_split(map_str, '\n');
+	map_data->map_input = ft_split(map_str, '\n');
+	// for (int k = 0; map_data->map_input[k] != NULL; k++)
+	// {
+	// 	printf("<%s>\n", map_data->map_input[k]);
+	// }
+	// if (read_input(map_data, filename) == 1)
+	// {
+	// 	printf("read input got fucekd from parse input func\n");
+	// 	return (1);
+	// }
+	find_rows(map_data);
+	find_cols(map_data);
+	//printf("rows: %d\n", map_data->rows);
+	//printf("cols: %d\n", map_data->cols);
 	if (is_map_valid(map_data) == 1)
 	{
 		printf("is map valid failed\n");
@@ -138,5 +182,7 @@ int	parse_input(t_game *game, char *filename)
 	}
 	game->map = map_data;
 	printf("succes in parse_input\n");
+	free(map_str);
+	map_str = NULL;
 	return (0);
 }
