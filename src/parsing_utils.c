@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 16:52:55 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/07 12:37:45 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/06/10 13:05:41 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,33 @@
 
 // }
 
+
+
+int	is_empty_lines_in_map(t_map *map_data, char *map_str)
+{
+    int i;
+    i = 0;
+    while (map_str[i])
+    {
+        if (map_str[0] == '\n' || (map_str[i] == '\n' && (map_str[i+1]) == '\n'))
+		{
+			printf("map has empty lines\n");
+			return (1);
+		}
+        i++;
+    }
+    return 0;
+}
+
+
+
+
+int	is_map_empty(char *map)
+{
+	if (*map == '\0')
+		return 1;
+	return 0;
+}
 
 bool	is_walled(t_map *map_data)
 {
@@ -93,9 +120,30 @@ int	count_component(t_map *map_data, int component)
 	return (count);
 }
 
+int check_invalid_components(t_map *map_data)
+{
+    int i, j;
 
+    for (i = 0; i < map_data->rows; i++)
+    {
+        for (j = 0; j < map_data->cols; j++)
+        {
+            if (ft_strchr("PEC01X\n", map_data->map_input[i][j]) == NULL)
+            {
+                printf("Illegal components!\n");
+                return (1);
+            }
+        }
+    }
+
+    return (0);
+}
 int	is_map_valid(t_map *map_data)
 {
+	if (check_invalid_components(map_data) == 1)
+	{
+		return (1);	
+	}
 	if ((count_component(map_data, 'E') != 1) || \
 		(count_component(map_data, 'C') < 1) || \
 				(count_component(map_data, 'P') != 1))
@@ -113,9 +161,11 @@ int	is_map_valid(t_map *map_data)
 		printf("is walled failed\n");
 		return (1);
 	}
-	else if (is_walled(map_data) == true)
+	if (is_walled(map_data) == true)
 		printf("is walled succes\n");
 	// if (is_valid_path(map_data) == false)
 	// 	return (1);
+	
+
 	return (0);
 }

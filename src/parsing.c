@@ -6,54 +6,11 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 16:16:09 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/07 15:46:14 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/06/10 13:09:06 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-// dont forget to check for empty files within the map - and an emty map
-
-// int	read_input(t_map *map_data, const char *filename)
-// {
-// 	char	*line;
-// 	int		fd;
-// 	int		i;
-
-// 	i = 0;
-// 	if ((fd = open(filename, O_RDONLY)) == -1)
-// 		return (1);
-// 	// map_data->map_input = malloc(sizeof(char *));
-// 	// if (map_data->map_input == NULL)
-// 	// 	return (1);
-// 	while ((line = get_next_line(fd)) != NULL)
-// 	{
-// 		// map_data->map_input = realloc(map_data->map_input, (i + 2) *sizeof(char *));
-// 		// if (map_data->map_input == NULL)
-// 		// 	return (1);
-// 		map_data->map_input[i] = line;
-// 		if (i == 0)
-// 		{
-// 			map_data->cols = strlen(line);
-// 			 if (line[map_data->cols - 1] == '\n')
-//         map_data->cols--;
-// 		}
-// 		i++;
-// 	}
-// 	map_data->rows = i;
-// 	map_data->map_input[i] = NULL; // null-terminatin?
-// 	//printf("map_data->map_input[%d] = %p\n", i, (void *)map_data->map_input[i]);
-// 	close(fd);
-// 	free(line);
-// 	line = NULL;
-
-// 	for (int k = 0; map_data->map_input[k] != NULL; k++)
-// 	{
-// 		printf("%s\n", map_data->map_input[k]);
-// 	}
-// 	return (0);
-// }
-
 
 
 char	*read_input(const char *filename)
@@ -85,7 +42,7 @@ char	*read_input(const char *filename)
 		else
 			break;
 	}
-	printf("<%s>\n", line_joined);
+	//printf("<%s>\n", line_joined);
 	close(fd);
 	return (line_joined);
 }
@@ -142,8 +99,6 @@ int	parse_input(t_game *game, char *filename)
 {
 	t_map	*map_data;
 	char	*map_str;
-	
-	//char	**map_arr;
 
 	map_data = malloc(sizeof(t_map));
 	if (map_data == NULL)
@@ -153,36 +108,67 @@ int	parse_input(t_game *game, char *filename)
 	}
 	
 	if (is_extension_valid(filename) == false)
+	{
+		printf("ext failed\n");
+		free_map(map_data);
 		return (1);
+	}
+		
 	
 	init_map_data(&map_data);
 	
 
 	map_str = read_input(filename);
-	//map_arr = ft_split(map_str, '\n');
-	//game->map->map_input = ft_split(map_str, '\n');
+	
+	if (map_str == NULL)
+	{
+		printf("map_str failed\n");
+		free_map(map_data);
+		return (1);
+	}
+	
+
+	if (is_map_empty(map_str) == 1)
+	{
+		printf("map empty\n");
+		free_map(map_data);
+		free(map_str);
+		//map_str = NULL;
+		return (1);
+	}
+	if (is_empty_lines_in_map(map_data, map_str) == 1)
+	{
+		printf("empty line in map\n");
+		free(map_str);
+		map_str = NULL;
+		free_map(map_data);
+		return 1;
+		
+	}
+
 	map_data->map_input = ft_split(map_str, '\n');
-	// for (int k = 0; map_data->map_input[k] != NULL; k++)
-	// {
-	// 	printf("<%s>\n", map_data->map_input[k]);
-	// }
-	// if (read_input(map_data, filename) == 1)
-	// {
-	// 	printf("read input got fucekd from parse input func\n");
-	// 	return (1);
-	// }
+	if (map_data->map_input == NULL)
+	{
+		printf("ft_split failed\n");
+		free(map_str);
+		map_str = NULL;
+		free_map(map_data);
+		return 1;
+	}
+	
 	find_rows(map_data);
 	find_cols(map_data);
-	//printf("rows: %d\n", map_data->rows);
-	//printf("cols: %d\n", map_data->cols);
 	if (is_map_valid(map_data) == 1)
 	{
 		printf("is map valid failed\n");
+		free(map_str);
+		map_str = NULL;
+		free_map(map_data);
 		return (1);
 	}
 	game->map = map_data;
 	printf("succes in parse_input\n");
 	free(map_str);
-	map_str = NULL;
+	//map_str = NULL;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 16:35:37 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/05 16:36:01 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/06/10 15:10:29 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	display_error_exit(const char *errmsg, int exit_code)
 {
+    
 	printf("%s\n", errmsg);
 	exit(exit_code);
 }
@@ -59,8 +60,8 @@ void free_entity(t_entity *entity)
 
 void free_game(t_game *game)
 {
-    if (game != NULL)
-    {
+    // if (game != NULL)
+    // {
         if (game->player != NULL)
             free_entity(game->player);
         if (game->collectibles != NULL)
@@ -69,14 +70,12 @@ void free_game(t_game *game)
             free_entity(game->background);
         if (game->walls != NULL)
             free_entity(game->walls);
-        if (game->entrance != NULL)
-            free_entity(game->entrance);
         if (game->exit != NULL)
             free_entity(game->exit);
         if (game->map != NULL)
             free_map(game->map);
-        free(game);
-    }
+        //free(game);
+    //}
 }
 
 // void	remove_mlx_images(t_game *game)
