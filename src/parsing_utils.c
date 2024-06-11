@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 16:52:55 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/10 13:05:41 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/06/11 18:24:12 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,9 @@
 
 
 // /* some pathfinding algorithm? */
-// bool	is_valid_path(t_map *map_data)
-// {
-
-// }
+// bool	is_valid_path(t_map *map_data);
 
 
-
-int	is_empty_lines_in_map(t_map *map_data, char *map_str)
-{
-    int i;
-    i = 0;
-    while (map_str[i])
-    {
-        if (map_str[0] == '\n' || (map_str[i] == '\n' && (map_str[i+1]) == '\n'))
-		{
-			printf("map has empty lines\n");
-			return (1);
-		}
-        i++;
-    }
-    return 0;
-}
-
-
-
-
-int	is_map_empty(char *map)
-{
-	if (*map == '\0')
-		return 1;
-	return 0;
-}
 
 bool	is_walled(t_map *map_data)
 {
@@ -103,11 +74,9 @@ int	count_component(t_map *map_data, int component)
 	i = 0;
 	while (i < map_data->rows && map_data->map_input[i] != NULL)
 	{
-		//printf("Row: %d\n", i);
 		j = 0;
 		while (j < map_data->cols)
 		{
-			//printf("Column: %d\n", j);
 			if (map_data->map_input[i][j] == component)
 			{
 				count++;
@@ -116,28 +85,9 @@ int	count_component(t_map *map_data, int component)
 		}
 		i++;
 	}
-	//printf("Counted %d '%c' components\n", count, component);
 	return (count);
 }
 
-int check_invalid_components(t_map *map_data)
-{
-    int i, j;
-
-    for (i = 0; i < map_data->rows; i++)
-    {
-        for (j = 0; j < map_data->cols; j++)
-        {
-            if (ft_strchr("PEC01X\n", map_data->map_input[i][j]) == NULL)
-            {
-                printf("Illegal components!\n");
-                return (1);
-            }
-        }
-    }
-
-    return (0);
-}
 int	is_map_valid(t_map *map_data)
 {
 	if (check_invalid_components(map_data) == 1)
@@ -161,8 +111,11 @@ int	is_map_valid(t_map *map_data)
 		printf("is walled failed\n");
 		return (1);
 	}
-	if (is_walled(map_data) == true)
-		printf("is walled succes\n");
+	if (is_walled(map_data) == false)
+	{
+		printf("is walled failed\n");
+		return 1;
+	}
 	// if (is_valid_path(map_data) == false)
 	// 	return (1);
 	

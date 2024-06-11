@@ -50,6 +50,7 @@ so_long()
 }
 is_map_valid()
 {
+	is_empty_line();
 	is_component_count_valid();
 	is_rectangular();
 	is_walled();

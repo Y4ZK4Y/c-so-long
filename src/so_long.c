@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/31 12:43:57 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/10 14:04:33 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/06/11 19:33:49 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	so_long(t_game *game)
 {
-	// init
 	if (game_init(game) == 1)
 	{
 		printf("game init failed\n");
@@ -22,7 +21,7 @@ int	so_long(t_game *game)
 	}
 	
 	
-	// start
+	//start
 	if (game_start(game) == 1)
 	{
 		printf("game_start function failed\n");

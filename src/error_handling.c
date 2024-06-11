@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 16:35:37 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/10 15:10:29 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/06/11 18:50:24 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,32 @@ void	display_error_exit(const char *errmsg, int exit_code)
 	exit(exit_code);
 }
 
+static void	free_nullify(void **thing)
+{
+	free(*thing);
+	*thing = NULL;
+}
+
+
+static void	free_2d(void ***thing)
+{
+	int		i;
+	void	**arr;
+
+	i = 0;
+	if (*thing == NULL)
+		return ;
+	arr = *thing;
+	while (arr[i] != NULL)
+	{
+		free_nullify(&arr[i]);
+		i++;
+	}
+	free(arr);
+	*thing = NULL;
+}
+
+
 
 // / Exit the program as failure.
 // static void ft_error(void)
@@ -29,53 +55,43 @@ void	display_error_exit(const char *errmsg, int exit_code)
 
 
 
+
 void free_map(t_map *map)
 {
-    if (map != NULL)
-    {
-        if (map->map_input != NULL)
-        {
-            for (int i = 0; i < map->rows; i++)
-            {
-                if (map->map_input[i] != NULL)
-                    free(map->map_input[i]);
-            }
-            free(map->map_input);
-        }
-        free(map);
-    }
+	int	i;
+
+	i = 0;
+	if (map != NULL)
+	{
+		free_2d((void ***)&map->map_input);
+		free(map);
+	}
 }
 
 void free_entity(t_entity *entity)
 {
-    if (entity != NULL)
-    {
-        if (entity->img != NULL)
-            free(entity->img);
-        if (entity->texture != NULL)
-            free(entity->texture);
-        free(entity);
-    }
+	if (entity->img != NULL)
+		free(entity->img);
+	if (entity->texture != NULL)
+		free(entity->texture);
+	free(entity);
 }
 
-void free_game(t_game *game)
+void free_game(t_game *game, const char *errmsg, int exit_code)
 {
-    // if (game != NULL)
-    // {
-        if (game->player != NULL)
-            free_entity(game->player);
-        if (game->collectibles != NULL)
-            free_entity(game->collectibles);
-        if (game->background != NULL)
-            free_entity(game->background);
-        if (game->walls != NULL)
-            free_entity(game->walls);
-        if (game->exit != NULL)
-            free_entity(game->exit);
-        if (game->map != NULL)
-            free_map(game->map);
-        //free(game);
-    //}
+	if (game->player != NULL)
+		free_entity(game->player);
+	if (game->collectibles != NULL)
+		free_entity(game->collectibles);
+	if (game->background != NULL)
+		free_entity(game->background);
+	if (game->walls != NULL)
+		free_entity(game->walls);
+	if (game->exit != NULL)
+		free_entity(game->exit);
+	if (game->map != NULL)
+		free_map(game->map);
+	display_error_exit(errmsg, exit_code);
 }
 
 // void	remove_mlx_images(t_game *game)
@@ -88,4 +104,10 @@ void free_game(t_game *game)
 // 	mlx_delete_image(game->mlx, game->exit->img);
 	
 // }
+
+
+
+
+
+
 
