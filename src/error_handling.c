@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 16:35:37 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/11 18:50:24 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/06/12 13:18:06 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,20 +94,22 @@ void free_game(t_game *game, const char *errmsg, int exit_code)
 	display_error_exit(errmsg, exit_code);
 }
 
-// void	remove_mlx_images(t_game *game)
-// {
-// 	mlx_delete_image(game->mlx, game->player->img);
-// 	mlx_delete_image(game->mlx, game->collectibles->img);
-// 	mlx_delete_image(game->mlx, game->background->img);
-// 	mlx_delete_image(game->mlx, game->walls->img);
-// 	mlx_delete_image(game->mlx, game->entrance->img);
-// 	mlx_delete_image(game->mlx, game->exit->img);
-	
-// }
+void	remove_textures(t_game *game)
+{
+	mlx_delete_texture(game->player->texture);
+	mlx_delete_texture(game->collectibles->texture);
+	mlx_delete_texture(game->background->texture);
+	mlx_delete_texture(game->walls->texture);
+	mlx_delete_texture(game->exit->texture);
+}
 
 
-
-
-
-
+void	remove_images(t_game *game)
+{
+	mlx_delete_image(game->mlx, game->player->img);
+	mlx_delete_image(game->mlx, game->walls->img);
+	mlx_delete_image(game->mlx, game->background->img);
+	mlx_delete_image(game->mlx, game->collectibles->img);
+	mlx_delete_image(game->mlx, game->exit->img);
+}
 

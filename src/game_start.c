@@ -1,160 +1,81 @@
-// /* ************************************************************************** */
-// /*                                                                            */
-// /*                                                        ::::::::            */
-// /*   game_start.c                                       :+:    :+:            */
-// /*                                                     +:+                    */
-// /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
-// /*                                                   +#+                      */
-// /*   Created: 2024/05/31 13:27:11 by ykarimi       #+#    #+#                 */
-// /*   Updated: 2024/06/10 12:20:47 by ykarimi       ########   odam.nl         */
-// /*                                                                            */
-// /* ************************************************************************** */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   game_start.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/05/31 13:27:11 by ykarimi       #+#    #+#                 */
+/*   Updated: 2024/06/12 17:57:01 by ykarimi       ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "so_long.h"
 
 
-
-
-
-
-void    draw_entity(t_game *game, t_entity *entity, int row, int col)
-{
-    // int x = col * ENTITY_WIDTH;
-    // int y = row * ENTITY_HEIGHT;
-    
-
-    mlx_image_to_window(game->mlx, entity->img, 10, 10);
-}
-
-
-
-
-void render_elements(t_game *game)
-{
-    int i, j;
-    char map_element;
-    map_element = '\0';
-    i = 0;
-    while (i < game->map->rows)
-    {
-        j = 0;
-        while (j < game->map->cols)
-        {
-            map_element = game->map->map_input[i][j];
-            if (map_element == '1')
-            {
-				load_entity(game, game->walls, "./res/wall.png");
-                draw_entity(game, game->walls, i, j);
-            }
-            else if (map_element == '0')
-            {
-				load_entity(game, game->background, "./res/background.png");
-                draw_entity(game, game->background, i, j);
-            }
-            else if (map_element == 'E')
-            {
-				load_entity(game, game->exit, "./res/exit.png");
-                draw_entity(game, game->exit, i, j);
-            }
-            else if (map_element == 'P')
-            {
-				load_entity(game, game->player, "./res/hero.png");
-                draw_entity(game, game->player, i, j);
-            }
-            else if (map_element == 'C')
-            {
-				load_entity(game, game->collectibles, "./res/collectible.png");
-                draw_entity(game, game->collectibles, i, j);
-            }
-            j++;
-        }
-        i++;
-    }
-}
-
-
-int count_collectibles(t_game *game)
-{
-    size_t x, y;
-    int count = 0;
-
-    y = 0;
-    //x = 0;
-    while ( y < game->map->rows)
-    {
-         x = 0;
-        while (x < game->map->cols)
-        {
-            if (game->map->map_input[y][x] == 'C')
-            {
-                count++;
-            }
-            x++;
-        }
-        y++;
-    }
-    return count;
-}
-
-
-
-
-size_t get_pos(t_game *game, char character, char coordinate)
-{
-    size_t x, y;
-    y = 0;
-    while (y < game->map->rows)
-    {
-        x = 0;
-        while (x < game->map->cols)
-        {
-            if (game->map->map_input[y][x] == character)
-            {
-                if (coordinate == 'x')
-                    return x;
-                else
-                    return y;
-            }
-            x++;
-        }
-        y++;
-    }
-    return 0;
-
-}
-
 void populate_game_entities(t_game *game)
 {
     game->player->x = get_pos(game, 'P', 'x');
-    game->player->y = get_pos(game, 'P', 'y');
-    game->exit->x = get_pos(game, 'E', 'x');
-    game->exit->y = get_pos(game, 'E', 'y');
-    //printf("num of c: %d\n", count_collectibles(game));
+    printf("Player x position: %d\n", game->player->x);
 
-//     printf("Player position: (%d, %d)\n", game->player->x, game->player->y);
-//     printf("Exit position: (%d, %d)\n", game->exit->x, game->exit->y);
-//     printf("Number of collectibles: %d\n", game->num_collectibles);
+    game->player->y = get_pos(game, 'P', 'y');
+    printf("Player y position: %d\n", game->player->y);
+
+    game->exit->x = get_pos(game, 'E', 'x');
+    printf("Exit x position: %d\n", game->exit->x);
+
+    game->exit->y = get_pos(game, 'E', 'y');
+    printf("Exit y position: %d\n", game->exit->y);
+
+    int num_collectibles = count_collectibles(game);
+    printf("Number of collectibles: %d\n", num_collectibles);
 
 }
-int load_entity(t_game *game,t_entity *entity, const char *filepath)
+
+
+
+void    draw_entity(t_game *game, t_entity *entity, int y, int x)
 {
     if (entity == NULL)
-    {
-        printf("entity is NULL");
-        return 1;
-    }
-	if ((entity->texture = mlx_load_png(filepath)) == NULL)
-        printf("mlx load png failed\n");
-	if ((entity->img = mlx_texture_to_image(game->mlx, entity->texture)) == NULL)
-        printf("mlx txture to image failed\n");
-	if (entity->img == NULL)
-	{
-		printf("loading  failed\n");
-		return (1);
-	}
-    mlx_delete_texture(entity->texture);
-	return (0);
-	
+        {
+            printf("Error: Attempted to draw a NULL entity\n");
+            return;
+        }
+        if (entity->img == NULL)
+        {
+            printf("Error: Entity has no image to draw\n");
+            return;
+        }
+        
+    int pixel_x = x * PIXEl_SIZE;
+    int pixel_y = y * PIXEl_SIZE;
+
+    mlx_image_to_window(game->mlx, entity->img, pixel_x, pixel_y);
+    printf("Entity drawn at (%d, %d)\n", x, y);
+}
+
+
+
+void render_game(t_game *game)
+{
+    // draw_entity(game, game->background, 0, 0);
+    
+    // for (int i = 0; i < game->map->rows; i++)
+    // {
+    //     draw_entity(game, &(game->walls[i]), game->walls[i].x, game->walls[i].y);
+    // }
+
+    draw_entity(game, game->player, game->player->y, game->player->x);
+draw_entity(game, game->exit, game->exit->y, game->exit->x);
+
+    
+    //printf("Number of collectibles: %d\n", game->num_collectibles);
+    // for (int i = 0; i < game->num_collectibles; i++)
+    // {
+    //     printf("Drawing collectible at (%d, %d)\n", game->collectibles[i].x, game->collectibles[i].y);
+    //     draw_entity(game, &(game->collectibles[i]), game->collectibles[i].x, game->collectibles[i].y);
+    // }
+
 }
 
 
@@ -167,62 +88,156 @@ void load_pngs(t_game *game)
         "./res/background.png",
         "./res/collectible.png"
     };
-    t_entity *entities[] = {
-        game->walls,
-        game->player,
-        game->exit,
-        game->background,
-        game->collectibles
+    t_entity **entities[] = {
+        &game->walls,
+        &game->player,
+        &game->exit,
+        &game->background,
+        &game->collectibles
     };
     int num_png_files = sizeof(png_files) / sizeof(png_files[0]);
 
     for (int i = 0; i < num_png_files; i++)
     {
-        load_entity(game, entities[i], png_files[i]);
+        (*entities[i])->texture = mlx_load_png(png_files[i]);
+        if ((*entities[i])->texture == NULL)
+        {
+            printf("Failed to load texture from %s\n", png_files[i]);
+          
+        }
+        else
+        {
+            printf("Successfully loaded texture from %s\n", png_files[i]);
+            (*entities[i])->img = mlx_texture_to_image(game->mlx, (*entities[i])->texture);
+            if ((*entities[i])->img == NULL)
+            {
+                printf("Failed to convert texture to image for %s\n", png_files[i]);
+            }
+            else
+            {
+                printf("Successfully converted texture to image for %s\n", png_files[i]);
+            }
+        }
     }
+}
+
+
+void draw_static_entity(t_game *game, int i, int j)
+{
+    //printf("Drawing entity at (%d, %d): %c\n", i, j, game->map->map_input[i][j]);
+    // if (game->map->map_input[i][j] == '1')
+    // {
+    //     draw_entity(game, game->walls, i, j);
+    // }
+    if (game->map->map_input[i][j] == '0')
+    {
+        draw_entity(game, game->background, i, j);
+    }
+
+}
+void draw_static_entity_walls(t_game *game, int i, int j)
+{
+    //printf("Drawing entity at (%d, %d): %c\n", i, j, game->map->map_input[i][j]);
+    // if (game->map->map_input[i][j] == '1')
+    // {
+    //     draw_entity(game, game->walls, i, j);
+    // }
+    if (game->map->map_input[i][j] == '1')
+    {
+        draw_entity(game, game->walls, i, j);
+    }
+
+}
+
+
+void draw_static_entity_wheresplaya(t_game *game, int i, int j)
+{
+    //printf("Drawing entity at (%d, %d): %c\n", i, j, game->map->map_input[i][j]);
+    // if (game->map->map_input[i][j] == '1')
+    // {
+    //     draw_entity(game, game->walls, i, j);
+    // }
+    if (game->map->map_input[i][j] == 'P')
+    {
+        printf("-palay-\n");
+        printf("playa x: %d, playa y: %d", i, j);
+    }
+
+}
+
+
+
+// void render_static(t_game *game)
+// {
+//     int i;
+//     int j = 0;
+//     i = 0;
+//     while (j < game->map->cols)
+//     {
+//         i = 0;
+//         while (i < game->map->rows)
+//         {
+//             //draw_entity(game, game->player, i, j);
+//             draw_static_entity(game, j, i);
+//             draw_static_entity_walls(game, j , i);
+//             i++;
+//         }
+//         j++;
+//     }  
+// }
+// 
+// 
+// void render_static(t_game *game)
+// {
+//     for (int i = 0; i < game->map->rows; i++) // iterate over rows
+//     {
+//         for (int j = 0; j < game->map->cols; j++) // iterate over columns in each row
+//         {
+//             draw_static_entity(game, i, j);
+//             draw_static_entity_walls(game, i, j);
+//         }
+//     }  
+// }
+
+void render_static(t_game *game)
+{
+    int i = 0;
+    while (i < game->map->rows) // iterate over rows
+    {
+        int j = 0;
+        while (j < game->map->cols) // iterate over columns in each row
+        {
+            draw_static_entity(game, i, j);
+            draw_static_entity_walls(game, i, j);
+            draw_static_entity_wheresplaya(game, i, j);
+            j++;
+        }
+        i++;
+    }  
 }
 
 int game_start(t_game *game)
 {
-    // printf("Game state:\n");
-
-    // printf("Player: x = %d, y = %d\n", game->player->x, game->player->y);
-    // printf("Exit: x = %d, y = %d\n", game->exit->x, game->exit->y);
-
-    // printf("Map: rows = %d, cols = %d\n", game->map->rows, game->map->cols);
-    // for (int i = 0; i < game->map->rows; i++)
-    // {
-    //     for (int j = 0; j < game->map->cols; j++)
-    //     {
-    //         printf("%c ", game->map->map_input[i][j]);
-    //     }
-    //     printf("\n");
-    // }
+    if (render_window(game) == 1)
+    {
+        printf("render_window function failed\n");
+        return (1);
+    }
+    printf("render_window function passed\n");
 
     load_pngs(game);
+    printf("load_pngs function executed\n");
+
     populate_game_entities(game);
+    printf("populate_game_entities function executed\n");
 
+    render_static(game);
+    render_game(game);
+    printf("render_game function executed\n");
 
-//  printf("Game state after calling populate:\n");
+    // event_listener();
+    // printf("event_listener function executed\n");
 
-//     printf("Player: x = %d, y = %d\n", game->player->x, game->player->y);
-//     printf("Exit: x = %d, y = %d\n", game->exit->x, game->exit->y);
-
-//     printf("Map: rows = %d, cols = %d\n", game->map->rows, game->map->cols);
-//     for (int i = 0; i < game->map->rows; i++)
-//     {
-//         for (int j = 0; j < game->map->cols; j++)
-//         {
-//             printf("%c ", game->map->map_input[i][j]);
-//         }
-//         printf("\n");
-//     }
-    render_elements(game);
-	// event_listener();
     return (0);
-	
 }
-
-
-
 

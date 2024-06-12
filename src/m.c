@@ -87,6 +87,100 @@
 
 
 
+// // put things in their right spot
+
+
+
+
+// void draw_entity(t_game *game, t_entity *entity, int row, int col)
+// {
+//     int x = col * entity->width;
+//     int y = row * entity->height;
+
+//     mlx_image_to_window(game->mlx, entity->img, x, y);
+// }
+
+
+
+
+//  if (type == PLAYER)
+//     {
+//         // Draw player
+//     }
+//     else if (type == ENEMY)
+//     {
+//         // Draw enemy
+//     }
+//     else if (type == COLLECTIBLE)
+//     {
+//         // Draw collectible
+//     }
+//     else if (type == WALL)
+//     {
+//         // Draw wall
+//     }
+//     else if (type == ENTRANCE)
+//     {
+//         // Draw entrance
+//     }
+//     else if (type == EXIT)
+//     {
+//         // Draw exit
+//     }
+
+
+
+	
+
+// void render_static_elements(t_game *game)
+// {
+//     int i, j;
+//     for (i = 0; i < game->map->rows; i++)
+//     {
+//         for (j = 0; j < game->map->cols; j++)
+//         {
+//             char map_element = game->map->map_input[i][j];
+//             if (map_element == '1')
+//             {
+//                 draw_entity(game, game->walls, i, j);
+//             }
+//             else if (map_element == '0')
+//             {
+//                 draw_entity(game, game->background, i, j);
+//             }
+//             else if (map_element == 'E')
+//             {
+//                 draw_entity(game, game->entrance, i, j);
+//             }
+//             else if (map_element == 'X')
+//             {
+//                 draw_entity(game, game->exit, i, j);
+//             }
+//         }
+//     }
+// }
+
+// void render_dynamic_elements(t_game *game)
+// {
+//     int i, j;
+//     for (i = 0; i < game->map->rows; i++)
+//     {
+//         for (j = 0; j < game->map->cols; j++)
+//         {
+//             char map_element = game->map->map_input[i][j];
+//             if (map_element == 'P')
+//             {
+//                 draw_entity(game, game->player, i, j);
+//             }
+//             else if (map_element == 'C')
+//             {
+//                 draw_entity(game, game->collectibles, i, j);
+//             }
+//         }
+//     }
+// }
+
+
 
 
 
@@ -178,3 +272,157 @@
 // 	// event_listerner();
 // 	return 0;
 // }
+
+
+    // printf("Game state:\n");
+
+    // printf("Player: x = %d, y = %d\n", game->player->x, game->player->y);
+    // printf("Exit: x = %d, y = %d\n", game->exit->x, game->exit->y);
+
+    // printf("Map: rows = %d, cols = %d\n", game->map->rows, game->map->cols);
+    // for (int i = 0; i < game->map->rows; i++)
+    // {
+    //     for (int j = 0; j < game->map->cols; j++)
+    //     {
+    //         printf("%c ", game->map->map_input[i][j]);
+    //     }
+    //     printf("\n");
+    // }
+
+
+    //  printf("Game state after calling populate:\n");
+
+//     printf("Player: x = %d, y = %d\n", game->player->x, game->player->y);
+//     printf("Exit: x = %d, y = %d\n", game->exit->x, game->exit->y);
+
+//     printf("Map: rows = %d, cols = %d\n", game->map->rows, game->map->cols);
+//     for (int i = 0; i < game->map->rows; i++)
+//     {
+//         for (int j = 0; j < game->map->cols; j++)
+//         {
+//             printf("%c ", game->map->map_input[i][j]);
+//         }
+//         printf("\n");
+//     }
+
+
+// void render_elements(t_game *game)
+// {
+//     int i, j;
+//     char map_element;
+//     map_element = '\0';
+//     i = 0;
+//     while (i < game->map->rows)
+//     {
+//         j = 0;
+//         while (j < game->map->cols)
+//         {
+//             map_element = game->map->map_input[i][j];
+//             if (map_element == '1')
+//             {
+// 				load_entity(game, game->walls, "./res/wall.png");
+//                 draw_entity(game, game->walls, i, j);
+//             }
+//             else if (map_element == '0')
+//             {
+// 				load_entity(game, game->background, "./res/background.png");
+//                 draw_entity(game, game->background, i, j);
+//             }
+//             else if (map_element == 'E')
+//             {
+// 				load_entity(game, game->exit, "./res/exit.png");
+//                 draw_entity(game, game->exit, i, j);
+//             }
+//             else if (map_element == 'P')
+//             {
+// 				load_entity(game, game->player, "./res/hero.png");
+//                 draw_entity(game, game->player, i, j);
+//             }
+//             else if (map_element == 'C')
+//             {
+// 				load_entity(game, game->collectibles, "./res/collectible.png");
+//                 draw_entity(game, game->collectibles, i, j);
+//             }
+//             j++;
+//         }
+//         i++;
+//     }
+// }
+
+// int	load_walls(t_game *game)
+// {
+	
+// 	game->walls->texture = mlx_load_png("./res/wall_cropped.png");
+// 	mlx_texture_to_image(game->mlx, game->walls->texture);
+// 	if (game->walls->img == NULL)
+// 	{
+// 		printf("loading walls failed\n");
+// 		return (1);
+// 	}
+// 	//mlx_image_to_window(game->mlx, game->walls->img, 0, 0);
+// 	return (0);
+	
+// }
+
+
+// int	load_background(t_game *game)
+// {
+	
+// 	game->background->texture = mlx_load_png("./res/background.png");
+// 	mlx_texture_to_image(game->mlx, game->background->texture);
+// 	if (!game->background->img)
+// 	{
+// 		printf("loading background failed\n");
+// 		return (1);
+// 	}
+// 	//mlx_image_to_window(game->mlx, game->background->img, 0, 0);
+// 	return (0);
+	
+// }
+
+// int	load_entrance(t_game *game)
+// {
+	
+// 	game->entrance->texture = mlx_load_png("./res/walls_cropped.png");
+// 	mlx_texture_to_image(game->mlx, game->entrance->texture);
+// 	if (game->entrance->img == NULL)
+// 	{
+// 		printf("loading entrance failed\n");
+// 		return (1);
+// 	}
+// 	//mlx_image_to_window(game->mlx, game->entrance->img, 100, 100);
+// 	return (0);
+	
+// }
+
+// int	load_exit(t_game *game)
+// {
+	
+// 	game->exit->texture = mlx_load_png("./res/walls_cropped.png");
+// 	mlx_texture_to_image(game->mlx, game->exit->texture);
+// 	if (game->exit->img == NULL)
+// 	{
+// 		printf("loading exit failed\n");
+// 		return (1);
+// 	}
+// 	//mlx_image_to_window(game->mlx, game->exit->img, 0, 0);
+// 	return (0);
+	
+// }
+
+
+// int	load_collectibles(t_game *game)
+// {
+	
+// 	game->collectibles->texture = mlx_load_png("./res/enemy_cropped.png");
+// 	mlx_texture_to_image(game->mlx, game->collectibles->texture);
+// 	if (game->collectibles->img == NULL)
+// 	{
+// 		printf("loading collectibles failed\n");
+// 		return (1);
+// 	}
+// 	//mlx_image_to_window(game->mlx, game->collectibles->img, 0, 0);
+// 	return (0);
+	
+// }
+

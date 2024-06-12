@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/06/11 16:27:16 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/11 19:28:44 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/06/12 10:53:34 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	populate_map_struct(t_map *map, char *map_str, int num_lines)
 {
 	map->rows = find_rows(map_str);
 	map->cols = find_cols(map_str);
-    printf("uurows: %d\n", map->rows);
-	printf("uucols: %d\n", map->cols);
-    print_map_input(map);
+    // printf("uurows: %d\n", map->rows);
+	// printf("uucols: %d\n", map->cols);
+    // print_map_input(map);
 }

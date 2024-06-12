@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 16:16:09 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/11 19:32:18 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/06/12 13:45:48 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ int	parse_input(t_game *game, char *filename)
 	t_map	*map;
 	char	*map_str;
 	int num_lines;
-	//char	**map_grid;
 	
 	map = malloc(sizeof(t_map));
 	if (map == NULL)
@@ -75,7 +74,7 @@ int	parse_input(t_game *game, char *filename)
 		printf("memory allocation for map failed\n");
 		return (1);
 	}
-	init_map(map);
+	init_map(&map);
 	if (is_extension_valid(filename) == false)
 	{
 		free_map(map);
@@ -96,7 +95,7 @@ int	parse_input(t_game *game, char *filename)
 		free(map_str);
 		return (1);
 	}
-	printf("77777777777\n");
+	
 	if (is_empty_lines_in_map(map_str) == 1)
 	{
 		printf("empty line in map\n");
@@ -115,7 +114,7 @@ int	parse_input(t_game *game, char *filename)
 	}
 	populate_map_struct(map, map_str, num_lines);
 	game->map = map;
-	printf("77777777777\n");
+	
 	if (is_map_valid(map) == 1)
 	{
 		printf("is map valid failed\n");
@@ -124,9 +123,9 @@ int	parse_input(t_game *game, char *filename)
 		return (1);
 	}
 	
-	printf("rows: %d\n", game->map->rows);
-	printf("cols: %d\n", game->map->cols);
-	print_map_input(game->map);
+	// printf("rows: %d\n", game->map->rows);
+	// printf("cols: %d\n", game->map->cols);
+	// print_map_input(game->map);
 
 	
 	printf("succes in parse_input\n");
