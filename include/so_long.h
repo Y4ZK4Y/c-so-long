@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 10:43:26 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/12 17:48:43 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/06/17 17:30:34 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ int		so_long(t_game *game);
 
 /* error handling */
 void	free_game(t_game *game, const char *errmsg, int exit_code);
-void	free_entity(t_entity *entity);
+void	free_entity(t_entity **entity);
 void	free_map(t_map *map);
 void	display_error_exit(const char *errmsg, int exit_code);
 //void free_2d_array(void **array, int rows);
@@ -176,16 +176,18 @@ void	populate_game_entities(t_game *game);
 size_t		get_pos(t_game *game, char character, char coordinate);
 int		count_collectibles(t_game *game);
 void	render_game(t_game *game);
-void draw_static_entity_wheresplaya(t_game *game, int i, int j);
+
 
 //int		load_entity(t_game *game, t_entity *entity,  const char *filepath);
 void	draw_entity(t_game *game, t_entity *entity, int x, int y);
 int		count_lines(char *str);
-void render_static(t_game *game);
-void draw_static_entity(t_game *game, int i, int j);
+void render_game(t_game *game);
+void pick_entity(t_game *game, int i, int j);
 
-void draw_static_entity_walls(t_game *game, int i, int j);
+
 int render_window(t_game *game);
+
+
 // int	load_assets(t_game *game);
 // int	load_map(t_game *game);
 // int	load_collectibles(t_game *game);
@@ -206,5 +208,20 @@ int render_window(t_game *game);
 // int move_up(t_game *game);
 void print_map_input(t_map *map);
 //void	remove_mlx_images(t_game *game);
+
+
+
+
+
+
+
+
+/* Event Listener */
+void    key_input(mlx_key_data_t keydata, void *param);
+void move_right(t_game *game);
+void move_left(t_game *game);
+void move_up(t_game *game);
+void move_down(t_game *game);
+
 #endif
 

@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 16:35:37 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/12 13:18:06 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/06/17 10:22:03 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,27 +68,47 @@ void free_map(t_map *map)
 	}
 }
 
-void free_entity(t_entity *entity)
+// void free_entity(t_entity *entity)
+// {
+// 	if (entity->img != NULL)
+// 		free(entity->img);
+// 	if (entity->texture != NULL)
+// 		free(entity->texture);
+// 	free(entity);
+// }
+
+
+
+
+void free_entity(t_entity **entity)
 {
-	if (entity->img != NULL)
-		free(entity->img);
-	if (entity->texture != NULL)
-		free(entity->texture);
-	free(entity);
+    if ((*entity)->img != NULL)
+    {
+        free((*entity)->img);
+        (*entity)->img = NULL;
+    }
+    if ((*entity)->texture != NULL)
+    {
+        free((*entity)->texture);
+        (*entity)->texture = NULL;
+    }
+    free(*entity);
+    *entity = NULL;
 }
+
 
 void free_game(t_game *game, const char *errmsg, int exit_code)
 {
 	if (game->player != NULL)
-		free_entity(game->player);
+		free_entity(&game->player);
 	if (game->collectibles != NULL)
-		free_entity(game->collectibles);
+		free_entity(&game->collectibles);
 	if (game->background != NULL)
-		free_entity(game->background);
+		free_entity(&game->background);
 	if (game->walls != NULL)
-		free_entity(game->walls);
+		free_entity(&game->walls);
 	if (game->exit != NULL)
-		free_entity(game->exit);
+		free_entity(&game->exit);
 	if (game->map != NULL)
 		free_map(game->map);
 	display_error_exit(errmsg, exit_code);

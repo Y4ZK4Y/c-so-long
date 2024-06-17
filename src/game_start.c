@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/31 13:27:11 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/12 17:57:01 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/06/17 11:34:56 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@
 void populate_game_entities(t_game *game)
 {
     game->player->x = get_pos(game, 'P', 'x');
-    printf("Player x position: %d\n", game->player->x);
+    //printf("Player x position: %d\n", game->player->x);
 
     game->player->y = get_pos(game, 'P', 'y');
-    printf("Player y position: %d\n", game->player->y);
+    //printf("Player y position: %d\n", game->player->y);
 
     game->exit->x = get_pos(game, 'E', 'x');
-    printf("Exit x position: %d\n", game->exit->x);
+    //printf("Exit x position: %d\n", game->exit->x);
 
     game->exit->y = get_pos(game, 'E', 'y');
-    printf("Exit y position: %d\n", game->exit->y);
+    //printf("Exit y position: %d\n", game->exit->y);
 
-    int num_collectibles = count_collectibles(game);
-    printf("Number of collectibles: %d\n", num_collectibles);
+    game->num_collectibles = count_collectibles(game);
+    //printf("Number of collectibles: %d\n", game->num_collectibles);
 
 }
 
@@ -55,28 +55,6 @@ void    draw_entity(t_game *game, t_entity *entity, int y, int x)
 }
 
 
-
-void render_game(t_game *game)
-{
-    // draw_entity(game, game->background, 0, 0);
-    
-    // for (int i = 0; i < game->map->rows; i++)
-    // {
-    //     draw_entity(game, &(game->walls[i]), game->walls[i].x, game->walls[i].y);
-    // }
-
-    draw_entity(game, game->player, game->player->y, game->player->x);
-draw_entity(game, game->exit, game->exit->y, game->exit->x);
-
-    
-    //printf("Number of collectibles: %d\n", game->num_collectibles);
-    // for (int i = 0; i < game->num_collectibles; i++)
-    // {
-    //     printf("Drawing collectible at (%d, %d)\n", game->collectibles[i].x, game->collectibles[i].y);
-    //     draw_entity(game, &(game->collectibles[i]), game->collectibles[i].x, game->collectibles[i].y);
-    // }
-
-}
 
 
 void load_pngs(t_game *game)
@@ -122,84 +100,30 @@ void load_pngs(t_game *game)
 }
 
 
-void draw_static_entity(t_game *game, int i, int j)
+void pick_entity(t_game *game, int i, int j)
 {
-    //printf("Drawing entity at (%d, %d): %c\n", i, j, game->map->map_input[i][j]);
-    // if (game->map->map_input[i][j] == '1')
-    // {
-    //     draw_entity(game, game->walls, i, j);
-    // }
+    draw_entity(game, game->exit, game->exit->y, game->exit->x);
     if (game->map->map_input[i][j] == '0')
     {
         draw_entity(game, game->background, i, j);
     }
-
-}
-void draw_static_entity_walls(t_game *game, int i, int j)
-{
-    //printf("Drawing entity at (%d, %d): %c\n", i, j, game->map->map_input[i][j]);
-    // if (game->map->map_input[i][j] == '1')
-    // {
-    //     draw_entity(game, game->walls, i, j);
-    // }
     if (game->map->map_input[i][j] == '1')
     {
         draw_entity(game, game->walls, i, j);
     }
-
-}
-
-
-void draw_static_entity_wheresplaya(t_game *game, int i, int j)
-{
-    //printf("Drawing entity at (%d, %d): %c\n", i, j, game->map->map_input[i][j]);
-    // if (game->map->map_input[i][j] == '1')
-    // {
-    //     draw_entity(game, game->walls, i, j);
-    // }
+    if (game->map->map_input[i][j] == 'C')
+    {
+        draw_entity(game, game->collectibles, i, j);
+    }
     if (game->map->map_input[i][j] == 'P')
     {
-        printf("-palay-\n");
-        printf("playa x: %d, playa y: %d", i, j);
+        draw_entity(game, game->player, game->player->y, game->player->x);
     }
-
 }
 
 
 
-// void render_static(t_game *game)
-// {
-//     int i;
-//     int j = 0;
-//     i = 0;
-//     while (j < game->map->cols)
-//     {
-//         i = 0;
-//         while (i < game->map->rows)
-//         {
-//             //draw_entity(game, game->player, i, j);
-//             draw_static_entity(game, j, i);
-//             draw_static_entity_walls(game, j , i);
-//             i++;
-//         }
-//         j++;
-//     }  
-// }
-// 
-// 
-// void render_static(t_game *game)
-// {
-//     for (int i = 0; i < game->map->rows; i++) // iterate over rows
-//     {
-//         for (int j = 0; j < game->map->cols; j++) // iterate over columns in each row
-//         {
-//             draw_static_entity(game, i, j);
-//             draw_static_entity_walls(game, i, j);
-//         }
-//     }  
-// }
-
-void render_static(t_game *game)
+void render_game(t_game *game)
 {
     int i = 0;
     while (i < game->map->rows) // iterate over rows
@@ -207,9 +131,7 @@ void render_static(t_game *game)
         int j = 0;
         while (j < game->map->cols) // iterate over columns in each row
         {
-            draw_static_entity(game, i, j);
-            draw_static_entity_walls(game, i, j);
-            draw_static_entity_wheresplaya(game, i, j);
+            pick_entity(game, i, j);
             j++;
         }
         i++;
@@ -218,25 +140,32 @@ void render_static(t_game *game)
 
 int game_start(t_game *game)
 {
+    printf("entering start_game function.\n");
+
     if (render_window(game) == 1)
     {
         printf("render_window function failed\n");
         return (1);
     }
-    printf("render_window function passed\n");
+    printf("render_window function successful.\n");
 
     load_pngs(game);
-    printf("load_pngs function executed\n");
+    printf("load_pngs function executed.\n");
 
     populate_game_entities(game);
-    printf("populate_game_entities function executed\n");
+    printf("populate_game_entities function executed.\n");
 
-    render_static(game);
     render_game(game);
-    printf("render_game function executed\n");
+    
+    printf("render_game function executed.\n");
 
-    // event_listener();
-    // printf("event_listener function executed\n");
+    // if (event_listener() == 1)
+    // {
+    //     printf("event listener function got fucked.\n");
+    //     return 1;
+    // }
+    printf("event_listener function executed.\n");
+    printf("exiting start_game function.\n");
 
     return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/31 12:44:58 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/12 17:45:17 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/06/17 10:42:57 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	init_mlx(t_game *game)
 
 int	game_init(t_game *game)
 {
+	printf("entering game_init function.\n");
 	if (init_mlx(game) == 1)
 	{
 		printf("init mlx failed\n");
@@ -102,6 +103,7 @@ int	game_init(t_game *game)
 		return (1);
 	}
 
+	printf("exiting game_init function.\n");
 
 	return (0);
 }
