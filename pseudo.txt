@@ -95,3 +95,122 @@ while (game_state == PLAYING)
         game_state = GAME_OVER;
     }
 }
+
+
+--------------------------------------------------------------
+
+
+init_game(t_game *game);
+
+function()
+{
+	t_game game;
+	init_game(&game);
+
+}
+
+--------------------------------------------------------------
+
+init_game(t_game **game) or init_game(t_game *game);
+
+function()
+{
+	t_game *game;
+	game = malloc(sizeof(t_game));
+	init_game(&game) or init_game(game);
+
+}
+
+--------------------------------------------------------------
+--------------------------------------------------------------
+
+typedef struct s_entity{
+	int x;
+	mlx_image_t *img;
+}			t_entity;
+
+
+typedef struct s_game{
+	t_entity *player;
+}			t_game;	
+
+
+void	init_entity(t_entity **entity)
+{
+	(*entity)->x = 0;
+	(*entity)->img = NULL;		
+}
+function()
+{
+	t_game game;
+	init_game(&game)
+	game->player = malloc(sizeof(t_entity));
+	init_entity(&game->player);
+
+}
+
+
+--------------------------------------------------------------
+
+
+
+typedef struct s_entity{
+	int x;
+	mlx_image_t *img;
+}			t_entity;
+
+
+typedef struct s_game{
+	t_entity *player;
+}			t_game;	
+
+
+void	init_entity(t_entity *entity)
+{
+	entity->x = 0;
+	entity->img = NULL;		
+}
+function()
+{
+	t_game game;
+	init_game(&game)
+	game->player = malloc(sizeof(t_entity));
+	init_entity(game->player);
+
+}
+
+
+--------------------------------------------------------------
+
+
+
+typedef struct s_entity{
+	int x;
+	mlx_image_t *img;
+}			t_entity;
+
+
+typedef struct s_game{
+	t_entity *player;
+}			t_game;	
+
+
+
+init_entity(t_entity **entity)
+{
+    *entity = malloc(sizeof(t_entity));
+    if (*entity == NULL)
+        return 1;
+    (*entity)->x = 0;
+    (*entity)->img = NULL;
+}
+
+
+function()
+{
+	t_game game;
+	init_game(&game)
+	init_entity(&game->player);
+
+
+}

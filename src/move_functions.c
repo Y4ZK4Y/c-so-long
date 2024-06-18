@@ -6,120 +6,13 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/06/04 16:30:11 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/17 17:53:42 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/06/18 11:57:46 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 
-// //  move r l u d
-
-// int move_up(t_game *game)
-// {
-    
-    
-// }
-
-// int move_down(t_game *game)
-// {
-    
-// }
-
-// int move_left(t_game *game)
-// {
-    
-// }
-
-// void move_right(t_game *game)
-// {
-//     char *next_tile;
-    
-//     next_tile = &game->map->map_input[game->player->y][game->player->x+1];
-//     if (*next_tile != 'W')
-//     {
-//         if (*next_tile == 'C')
-//         {
-//             game->num_collectibles--;
-//         }
-//         game->map->map_input[game->player->y][game->player->x] = '0';
-//         game->player->x++;
-//         game->map->map_input[game->player->y][game->player->x] = 'P';
-//     }
-//     printf("num of collectibles: %d\n", game->num_collectibles);
-    
-    
-// }
-
-
-
-// void move_left(t_game *game)
-// {
-//     char *previous_tile;
-    
-//     previous_tile = &game->map->map_input[game->player->y][game->player->x-1];
-//     if (*previous_tile == 'W')
-//     {
-//         printf("is a wall\n");
-//     }
-//     else
-//     {
-//         if (*previous_tile != 'W')
-//         {
-//             if (*previous_tile == 'C')
-//                 game->num_collectibles--;
-//         }
-//         game->map->map_input[game->player->y][game->player->x] = '0';
-//         game->player->x--;
-//         game->map->map_input[game->player->y][game->player->x] = 'P';
-//     }
-//     printf("num of collectibles: %d\n", game->num_collectibles);
-    
-// }
-
-// int move_up(t_game *game)
-// {
-//     if (game->player.y > 0 && game->map[game->player.y - 1][game->player.x] != WALL)
-//     {
-//         game->player.y--;
-//         draw_entity(game, PLAYER, game->player.y, game->player.x);
-//         return SUCCESS;
-//     }
-//     return ERROR_GAME_LOOP;
-// }
-
-// int move_down(t_game *game)
-// {
-//     if (game->player.y < game->map_height - 1 && game->map[game->player.y + 1][game->player.x] != WALL)
-//     {
-//         game->player.y++;
-//         draw_entity(game, PLAYER, game->player.y, game->player.x);
-//         return SUCCESS;
-//     }
-//     return ERROR_GAME_LOOP;
-// }
-
-// int move_left(t_game *game)
-// {
-//     if (game->player.x > 0 && game->map[game->player.y][game->player.x - 1] != WALL)
-//     {
-//         game->player.x--;
-//         draw_entity(game, PLAYER, game->player.y, game->player.x);
-//         return SUCCESS;
-//     }
-//     return ERROR_GAME_LOOP;
-// }
-
-// int move_right(t_game *game)
-// {
-//     if (game->player.x < game->map_width - 1 && game->map[game->player.y][game->player.x + 1] != WALL)
-//     {
-//         game->player.x++;
-//         draw_entity(game, PLAYER, game->player.y, game->player.x);
-//         return SUCCESS;
-//     }
-//     return ERROR_GAME_LOOP;
-// }
 
 void move_right(t_game *game)
 {

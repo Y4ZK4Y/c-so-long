@@ -6,23 +6,24 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/06/05 10:36:45 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/17 11:34:52 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/06/18 10:39:34 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+// #include "so_long.h"
 
-int end_game(t_game *game)
-{
-	printf("entering end_game function.\n");
-    remove_textures(game);
-	//remove_images(game);
-	mlx_close_window(game->mlx);
-	mlx_terminate(game->mlx);
-	
-	printf("exiting game_end function.\n");
-    return 0;
-}
+// int end_game(t_game *game)
+// {
+// 	printf("entering end_game function.\n");
+//     remove_textures(game);
+// 	//remove_images(game);
+// 	mlx_close_window(game->mlx);
+// 	mlx_terminate(game->mlx);
+// 	free_game(game, "went well\n", EXIT_SUCCESS);
+
+// 	//printf("exiting game_end function.\n");
+//     return 0;
+// }
 
 
 // void load_pngs(t_game *game)

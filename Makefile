@@ -6,13 +6,13 @@
 #    By: ykarimi <ykarimi@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/05/29 10:38:04 by ykarimi       #+#    #+#                  #
-#    Updated: 2024/06/17 18:26:16 by ykarimi       ########   odam.nl          #
+#    Updated: 2024/06/18 16:22:44 by ykarimi       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := so_long
 CC := cc
-CFLAGS := -Wall -Werror
+CFLAGS := -Wall -Werror -Wextra -g
 MLX42FLAGS = -lglfw
 INCLUDES := -I./include -I./lib/libft/include -I./lib/get_next_line/include -I./lib/MLX42/include/MLX42
 BUILD_DIR := build

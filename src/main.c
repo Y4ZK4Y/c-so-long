@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 15:53:07 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/17 11:12:35 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/06/18 16:50:35 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,13 @@ int main(int argc, char **argv)
 {
 	t_game	game;
 
-	init_game_struct(&game);
 	if (argc != 2)
 		display_error_exit("few arguments provided.", EXIT_FAILURE);
-	if (parse_input(&game, argv[1]) == 1)
-		free_game(&game, "parsing failed.", EXIT_FAILURE);
+	init_game_struct(&game);
+	parse_input(&game, argv[1]);
 	if (so_long(&game) == 1)
-		free_game(&game, "so_long failed", EXIT_FAILURE);
-	printf("end of main.\n");
-	free_game(&game, "went well\n", EXIT_SUCCESS);
-	
+		free_game(&game, "so_long function failed.", EXIT_FAILURE, NULL);
+	free_game(&game, NULL, EXIT_SUCCESS, NULL);
+	mlx_terminate(game.mlx);
 	return (0);
 }

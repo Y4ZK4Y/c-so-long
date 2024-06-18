@@ -6,23 +6,22 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/31 12:44:58 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/17 10:42:57 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/06/18 17:50:25 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 
-
-void init_game_struct(t_game *game)
+void	init_game_struct(t_game *game)
 {
+	game->map = NULL;
 	game->player = NULL;
 	game->collectibles = NULL;
 	game->num_collectibles = 0;
 	game->background = NULL;
 	game->walls = NULL;
 	game->exit = NULL;
-	game->map = NULL;
 	game->mlx = NULL;
 	game->window = NULL;
 }
@@ -36,21 +35,12 @@ void	init_map(t_map **map)
 }
 
 
-int	init_entity(t_entity **entity)
+void	init_entity(t_entity **entity)
 {
-	*entity = malloc(sizeof(t_entity));
-	if (*entity == NULL)
-		return (1);
 	(*entity)->x = 0;
 	(*entity)->y = 0;
 	(*entity)->img = NULL;
-	(*entity)->texture = NULL;
-
-
-	// printf("Size of t_entity: %lu\n", sizeof(t_entity));
-	// printf("Size of allocated memory: %lu\n", sizeof(**entity));
-	
-	return (0);				
+	(*entity)->texture = NULL;				
 }
 
 
@@ -59,7 +49,7 @@ int	init_mlx(t_game *game)
 	game->mlx = mlx_init((game->map->cols * PIXEl_SIZE), (game->map->rows * PIXEl_SIZE), "GAME WINDOW", false);
 	if (game->mlx == NULL)
 	{
-		printf("mlx init failed from the inside\n");
+		print_error("mlx init failed.");
 		return (1);
 	}
 	return (0);
@@ -67,43 +57,29 @@ int	init_mlx(t_game *game)
 
 
 
-
-int	game_init(t_game *game)
+int	init(t_game *game)
 {
-	printf("entering game_init function.\n");
 	if (init_mlx(game) == 1)
-	{
-		printf("init mlx failed\n");
-		return 1;
-	}
-	if (init_entity(&game->player) == 1)
-	{
-		printf("player init failed\n");
 		return (1);
-	}
-	if (init_entity(&game->collectibles) == 1)
-	{
-		printf("collectible init failed\n");
+	game->player = malloc(sizeof(t_entity));
+	if (game->player == NULL)
 		return (1);
-	}
-	if (init_entity(&game->background) == 1)
-	{
-		printf("background init failed\n");
+	init_entity(&game->player);
+	game->collectibles = malloc(sizeof(t_entity));
+	if (game->collectibles == NULL)
 		return (1);
-	}
-	if (init_entity(&game->walls) == 1)
-	{
-		printf("walls init failed\n");
+	init_entity(&game->collectibles);
+	game->background = malloc(sizeof(t_entity));
+	if (game->background == NULL)
 		return (1);
-	}
-	
-	if (init_entity(&game->exit) == 1)
-	{
-		printf("exit init failed\n");
+	init_entity(&game->background);
+	game->walls = malloc(sizeof(t_entity));
+	if (game->walls == NULL)
 		return (1);
-	}
-
-	printf("exiting game_init function.\n");
-
+	init_entity(&game->walls);
+	game->exit = malloc(sizeof(t_entity));
+	if (game->exit == NULL)
+		return (1);
+	init_entity(&game->exit);
 	return (0);
 }

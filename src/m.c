@@ -418,3 +418,167 @@
 	
 // }
 
+// //  move r l u d
+
+// int move_up(t_game *game)
+// {
+    
+    
+// }
+
+// int move_down(t_game *game)
+// {
+    
+// }
+
+// int move_left(t_game *game)
+// {
+    
+// }
+
+// void move_right(t_game *game)
+// {
+//     char *next_tile;
+    
+//     next_tile = &game->map->map_input[game->player->y][game->player->x+1];
+//     if (*next_tile != 'W')
+//     {
+//         if (*next_tile == 'C')
+//         {
+//             game->num_collectibles--;
+//         }
+//         game->map->map_input[game->player->y][game->player->x] = '0';
+//         game->player->x++;
+//         game->map->map_input[game->player->y][game->player->x] = 'P';
+//     }
+//     printf("num of collectibles: %d\n", game->num_collectibles);
+    
+    
+// }
+
+
+
+// void move_left(t_game *game)
+// {
+//     char *previous_tile;
+    
+//     previous_tile = &game->map->map_input[game->player->y][game->player->x-1];
+//     if (*previous_tile == 'W')
+//     {
+//         printf("is a wall\n");
+//     }
+//     else
+//     {
+//         if (*previous_tile != 'W')
+//         {
+//             if (*previous_tile == 'C')
+//                 game->num_collectibles--;
+//         }
+//         game->map->map_input[game->player->y][game->player->x] = '0';
+//         game->player->x--;
+//         game->map->map_input[game->player->y][game->player->x] = 'P';
+//     }
+//     printf("num of collectibles: %d\n", game->num_collectibles);
+    
+// }
+
+// int move_up(t_game *game)
+// {
+//     if (game->player.y > 0 && game->map[game->player.y - 1][game->player.x] != WALL)
+//     {
+//         game->player.y--;
+//         draw_entity(game, PLAYER, game->player.y, game->player.x);
+//         return SUCCESS;
+//     }
+//     return ERROR_GAME_LOOP;
+// }
+
+// int move_down(t_game *game)
+// {
+//     if (game->player.y < game->map_height - 1 && game->map[game->player.y + 1][game->player.x] != WALL)
+//     {
+//         game->player.y++;
+//         draw_entity(game, PLAYER, game->player.y, game->player.x);
+//         return SUCCESS;
+//     }
+//     return ERROR_GAME_LOOP;
+// }
+
+// int move_left(t_game *game)
+// {
+//     if (game->player.x > 0 && game->map[game->player.y][game->player.x - 1] != WALL)
+//     {
+//         game->player.x--;
+//         draw_entity(game, PLAYER, game->player.y, game->player.x);
+//         return SUCCESS;
+//     }
+//     return ERROR_GAME_LOOP;
+// }
+
+// int move_right(t_game *game)
+// {
+//     if (game->player.x < game->map_width - 1 && game->map[game->player.y][game->player.x + 1] != WALL)
+//     {
+//         game->player.x++;
+//         draw_entity(game, PLAYER, game->player.y, game->player.x);
+//         return SUCCESS;
+//     }
+//     return ERROR_GAME_LOOP;
+// }
+
+
+// static void print_map_grid(char **map_grid) {
+//     if (map_grid == NULL) {
+//         printf("map_grid is NULL\n");
+//         return;
+//     }
+
+//     for (int i = 0; map_grid[i] != NULL; i++) {
+//         printf("%s\n", map_grid[i]);
+//     }
+// }
+
+
+
+
+//int	load_pngs(t_game *game)
+// {
+// 	char *png_files[] = {
+// 		"./res/wall.png",
+// 		"./res/hero.png",
+// 		"./res/exit.png",
+// 		"./res/background.png",
+// 		"./res/collectible.png"
+// 	};
+// 	t_entity    **entities[] = {
+// 		&game->walls,
+// 		&game->player,
+// 		&game->exit,
+// 		&game->background,
+// 		&game->collectibles
+// 	};
+// 	int num_png_files = sizeof(png_files) / sizeof(png_files[0]);
+
+// 	for (int i = 0; i < num_png_files; i++)
+// 	{
+// 		(*entities[i])->texture = mlx_load_png(png_files[i]);
+// 		if ((*entities[i])->texture == NULL)
+// 		{
+// 			printf("Failed to load texture from %s\n", png_files[i]);
+		
+// 		}
+// 		else
+// 		{
+// 			printf("Successfully loaded texture from %s\n", png_files[i]);
+// 			(*entities[i])->img = mlx_texture_to_image(game->mlx, (*entities[i])->texture);
+// 			if ((*entities[i])->img == NULL)
+// 			{
+// 				printf("Failed to convert texture to image for %s\n", png_files[i]);
+// 			}
+// 			else
+// 			{
+// 				printf("Successfully converted texture to image for %s\n", png_files[i]);
+// 			}
+// 		}
+// 	}
+// }
