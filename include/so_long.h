@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 10:43:26 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/18 18:07:53 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/06/19 10:27:01 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@
 
 #define PIXEl_SIZE 64
 
-typedef struct s_map
+typedef struct	s_map
 {
 	char		**map_input;
 	int			rows;
 	int			cols;
 } 				t_map;
 
-typedef struct s_entity
+typedef struct		s_entity
 {
 	int				x;
 	int				y;
@@ -52,9 +52,7 @@ typedef struct s_entity
 	
 }					t_entity;
 
-
-
-typedef struct s_game
+typedef struct	s_game
 {
 	t_map		*map;
 	t_entity	*player;
@@ -67,24 +65,6 @@ typedef struct s_game
 	mlx_image_t	*window;
 }				t_game;
 
-
-
-// typedef struct s_moves
-// {
-	
-// }       t_moves;
-
-// typedef struct s_input
-// {
-// 	int key_left;
-// 	int	key_right;
-// 	int key_up;
-// 	int key_down;
-// 	int key_esc;
-// 	int mouse_click;
-// }	t_input;
-
-
 /*
 typedef enum {
     PLAYER,
@@ -93,38 +73,23 @@ typedef enum {
     // Add more types as needed
 } t_entity_type;
 
-typedef struct {
-    t_entity_type type;
-    int x;
-    int y;
-    t_img *img;
-    t_texture *texture;
-} t_entity;*/
+
+typedef enum
+{
+	PLAYING,
+	GAME_OVER,
+	VICTORY,
+} GameState;
 
 
-// typedef enum
-// {
-// 	PLAYING,
-// 	GAME_OVER,
-// 	VICTORY,
-// } GameState;
-
-// // typedef enum
-// // {
-// // 	KEY_UP,
-// // 	KEY_DOWN,
-// // 	MOUSE_CLICK
-// // } 
-
-
-// typedef enum
-// {
-// 	SUCCES,
-// 	ERROR_INIT,
-// 	ERROR_LOAD_SPRITE,
-// 	ERROR_GAME_LOOP,
-// } ErrorCode;
-
+typedef enum
+{
+	SUCCES,
+	ERROR_INIT,
+	ERROR_LOAD_SPRITE,
+	ERROR_GAME_LOOP,
+} ErrorCode;
+*/
 
 
 /* Initializing */
@@ -159,74 +124,46 @@ int			find_rows(char *map_str);
 void		populate_map_struct(t_map *map, char *map_str);
 
 
-int		so_long(t_game *game);
-
-
-/* error handling */
-void	free_game(t_game *game, const char *errmsg, int exit_code, char **str);
-void	free_entity(t_entity **entity);
-void	free_map(t_map *map);
-void	display_error_exit(const char *errmsg, int exit_code);
-//void free_2d_array(void **array, int rows);
-void	delete_textures(t_game *game);
-void	remove_images(t_game *game);
-// int		end_game(t_game *game);
-void	print_error(const char *errmsg);
-
-
 
 /* Starting the game */
-int		render_window(t_game *game);
-int		load_pngs(t_game *game);
-void	populate_game_entities(t_game *game);
-int		get_pos(t_game *game, char character, char coordinate);
-int		count_collectibles(t_game *game);
-void	render_game(t_game *game);
+int			so_long(t_game *game);
+int			render_window(t_game *game);
+int			load_pngs(t_game *game);
+int			load_images(t_game *game);
+void		populate_game_entities(t_game *game);
+int			get_pos(t_game *game, char character, char coordinate);
+int			count_collectibles(t_game *game);
+void		render_game(t_game *game);
+void		draw_entity(t_game *game, t_entity *entity, int x, int y);
+void		render_game(t_game *game);
+void		pick_entity(t_game *game, int i, int j);
 
 
-//int		load_entity(t_game *game, t_entity *entity,  const char *filepath);
-void	draw_entity(t_game *game, t_entity *entity, int x, int y);
-//int		count_lines(char *str);
-void render_game(t_game *game);
-void pick_entity(t_game *game, int i, int j);
-
-
-
-
-// int	load_assets(t_game *game);
-// int	load_map(t_game *game);
-// int	load_collectibles(t_game *game);
-// int	load_player(t_game *game);
-
-
-// int	load_walls(t_game *game);
-// int	load_background(t_game *game);
-// int	load_exit(t_game *game);
-//int	load_entrance(t_game *game);
-
-// int render_dynamic_elements(t_game *game);
-
-
-// int move_right(t_game *game);
-// int move_left(t_game *game);
-// int move_down(t_game *game);
-// int move_up(t_game *game);
-//void	remove_mlx_images(t_game *game);
+/* Move Functions */
+void		handle_key_press(mlx_key_data_t keydata, void *param);
+void		move_right(t_game *game);
+void		move_left(t_game *game);
+void		move_up(t_game *game);
+void		move_down(t_game *game);
 
 
 
-/* temporary utils */
-//void print_map_input(t_map *map);
+/* Error handling */
+void		free_game(t_game *game, const char *errmsg, int exit_code, char **str);
+void		free_entity(t_entity **entity);
+void		free_map(t_map *map);
+void		display_error_exit(const char *errmsg, int exit_code);
+void		remove_textures(t_game *game);
+void		remove_images(t_game *game);
+void		print_msg(const char *errmsg);
+
+
+/* Scoreboard */
 
 
 
 
-/* Event Listener */
-void    key_input(mlx_key_data_t keydata, void *param);
-void move_right(t_game *game);
-void move_left(t_game *game);
-void move_up(t_game *game);
-void move_down(t_game *game);
+/* Animation */
+
 
 #endif
-

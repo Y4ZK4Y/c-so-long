@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 16:35:37 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/18 16:21:51 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/06/19 10:22:01 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	display_error_exit(const char *errmsg, int exit_code)
 {
 	if (errmsg != NULL)
-		print_error(errmsg);
+		print_msg(errmsg);
 	exit(exit_code);
 }
 
-void	print_error(const char *errmsg)
+void	print_msg(const char *errmsg)
 {
 	write(STDOUT_FILENO, errmsg, ft_strlen(errmsg));
 	write(STDOUT_FILENO, "\n", 1);
@@ -62,8 +62,7 @@ static void	free_2d(void ***thing)
 
 
 
-
-void free_map(t_map *map)
+void	free_map(t_map *map)
 {
 	int	i;
 
@@ -75,58 +74,17 @@ void free_map(t_map *map)
 	}
 }
 
-// void free_entity(t_entity *entity)
-// {
-// 	if (entity->img != NULL)
-// 		free(entity->img);
-// 	if (entity->texture != NULL)
-// 		free(entity->texture);
-// 	free(entity);
-// }
 
 
-
-
-void free_entity(t_entity **entity)
+void	free_entity(t_entity **entity)
 {
-    if ((*entity)->img != NULL)
-    {
-        //free((entity)->img);
-        (*entity)->img = NULL;
-    }
-    if ((*entity)->texture != NULL)
-    {
-        //free((*entity)->texture);
-        (*entity)->texture = NULL;
-    }
-    free(*entity);
-    //*entity = NULL;
+	if ((*entity)->img != NULL)
+		(*entity)->img = NULL;
+	if ((*entity)->texture != NULL)
+		(*entity)->texture = NULL;
+	free(*entity);
 }
 
-
-void free_game(t_game *game, const char *errmsg, int exit_code, char **str)
-{
-	if (str != NULL && *str != NULL)
-    {
-        free(*str);
-        *str = NULL;
-    }
-	if (game->map != NULL)
-		free_map(game->map);
-	if (game->player != NULL)
-		free_entity(&game->player);
-	if (game->collectibles != NULL)
-		free_entity(&game->collectibles);
-	if (game->background != NULL)
-		free_entity(&game->background);
-	if (game->walls != NULL)
-		free_entity(&game->walls);
-	if (game->exit != NULL)
-		free_entity(&game->exit);
-	if (errmsg != NULL)
-		display_error_exit(errmsg, exit_code);
-	
-}
 
 void	remove_textures(t_game *game)
 {
@@ -147,3 +105,26 @@ void	remove_images(t_game *game)
 	mlx_delete_image(game->mlx, game->exit->img);
 }
 
+
+void	free_game(t_game *game, const char *errmsg, int exit_code, char **str)
+{
+	if (str != NULL && *str != NULL)
+	{
+		free(*str);
+		*str = NULL;
+	}
+	if (game->map != NULL)
+		free_map(game->map);
+	if (game->player != NULL)
+		free_entity(&game->player);
+	if (game->collectibles != NULL)
+		free_entity(&game->collectibles);
+	if (game->background != NULL)
+		free_entity(&game->background);
+	if (game->walls != NULL)
+		free_entity(&game->walls);
+	if (game->exit != NULL)
+		free_entity(&game->exit);
+	if (errmsg != NULL)
+		display_error_exit(errmsg, exit_code);
+}

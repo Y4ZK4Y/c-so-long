@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 16:52:55 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/18 13:59:31 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/06/19 10:16:01 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,16 +91,16 @@ int	count_component(t_map *map_data, int component)
 bool	is_map_valid(t_map *map_data)
 {
 	if (invalid_components(map_data) == false)
-		return (print_error("map has illigal components."), false);
+		return (print_msg("map has illigal components."), false);
 	if ((count_component(map_data, 'E') != 1) || \
 		(count_component(map_data, 'C') < 1) || \
 		(count_component(map_data, 'P') != 1))
-			return (print_error("map is not a rectangle."), false);
+			return (print_msg("map is not a rectangle."), false);
 	if (is_rectangular(map_data) == false)
-		return (print_error("map is not a rectangle."), false);
+		return (print_msg("map is not a rectangle."), false);
 	if (is_walled(map_data) == false)
-		return (print_error("map is not surrounded by walls."), false);
+		return (print_msg("map is not surrounded by walls."), false);
 	// if (is_valid_path(map_data) == false)
-	//	return (print_error("map is not playable."), false);
+	//	return (print_msg("map is not playable."), false);
 	return (true);
 }
