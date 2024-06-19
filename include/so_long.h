@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 10:43:26 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/19 10:27:01 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/06/19 14:29:29 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "MLX42.h"
 #include "get_next_line.h"
 #include "libft.h"
+#include "utils.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -98,7 +99,6 @@ void		init_map(t_map **map);
 int			init(t_game *game);
 int			init_mlx(t_game *game);
 void		init_entity(t_entity **entity);
-
 
 
 /* Parsing */

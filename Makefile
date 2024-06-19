@@ -6,7 +6,7 @@
 #    By: ykarimi <ykarimi@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/05/29 10:38:04 by ykarimi       #+#    #+#                  #
-#    Updated: 2024/06/19 10:35:25 by ykarimi       ########   odam.nl          #
+#    Updated: 2024/06/19 11:55:40 by ykarimi       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,15 +14,18 @@ NAME := so_long
 CC := cc
 CFLAGS := -Wall -Werror -Wextra -g
 MLX42FLAGS = -lglfw
-INCLUDES := -I./include -I./lib/libft/include -I./lib/get_next_line/include -I./lib/MLX42/include/MLX42
-BUILD_DIR := build
+LIBFT_INCLUDES := -I./lib/libft/include
+GNL_INCLUDES := -I./lib/get_next_line/include
+MLX_INCLUDES := -I./lib/MLX42/include/MLX42
+SO_LONG_INCLUDES := -I./include
+INCLUDES = $(LIBFT_INCLUDES) $(GNL_INCLUDES) $(MLX_INCLUDES) $(SO_LONG_INCLUDES) 
+BUILD_DIR := bin
 SRC_DIR := src
 INC_DIR := include
 LIBFT := lib/libft/libft.a
 GNL := lib/get_next_line/get_next_line.a
 MLX42 := lib/MLX42/MLX42.a
 SRCS = $(wildcard $(SRC_DIR)/*.c)
-#OBJS = $(SRCS:.c=.o)
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRCS))
 MLX42 = lib/MLX42/build/libmlx42.a
 
@@ -57,10 +60,14 @@ clean:
 fclean: clean
 	$(MAKE) -C lib/libft fclean
 	$(MAKE) -C lib/get_next_line fclean
-	#$(MAKE) -C lib/MLX42 fclean
 	rm -f $(NAME).a
 	
 
 re: fclean all
 
-.PHONY: all clean fclean re
+test:
+	valgrind --leak-check=full --show-leak-kinds=all
+
+@printf "OBJS		: $(OBJS)\n"
+	
+.PHONY: $(LIBFT) all clean fclean re
