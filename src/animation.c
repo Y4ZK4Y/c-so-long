@@ -6,9 +6,9 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/06/19 12:16:52 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/19 12:17:02 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/06/24 13:37:04 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+// #include "so_long.h"
 

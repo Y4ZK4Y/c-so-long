@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/31 13:27:11 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/20 21:36:01 by yasamankari   ########   odam.nl         */
+/*   Updated: 2024/06/24 15:27:50 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,15 @@ void	pick_entity(t_game *game, int i, int j)
 
 int	load_pngs(t_game *game)
 {
-	game->player->texture = mlx_load_png("res/hero.png");
-	if (game->player->texture == NULL)
+	game->player->xpm = mlx_load_xpm42("./res/Walk.xpm42");
+	if (game->player->xpm == NULL)
+	{
+		perror("failed player xpm.\n");
 		return (1);
+	}
+	// game->player->texture = mlx_load_png("res/hero.png");
+	// if (game->player->texture == NULL)
+	// 	return (1);
 	game->background->texture = mlx_load_png("res/background.png");
 	if (game->background->texture == NULL)
 		return (1);
@@ -83,7 +89,10 @@ int	load_pngs(t_game *game)
 
 int	load_images(t_game *game)
 {
-	game->player->img = mlx_texture_to_image(game->mlx, game->player->texture);
+	// game->player->img = mlx_texture_to_image(game->mlx, game->player->texture);
+	// if (game->player->img == NULL)
+	// 	return (1);
+	game->player->img = mlx_texture_to_image(game->mlx, &(game->player->xpm)->texture);
 	if (game->player->img == NULL)
 		return (1);
 	game->background->img = mlx_texture_to_image(game->mlx, game->background->texture);

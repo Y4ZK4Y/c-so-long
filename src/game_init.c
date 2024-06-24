@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/31 12:44:58 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/19 10:15:01 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/06/24 14:28:47 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void	init_entity(t_entity **entity)
 	(*entity)->x = 0;
 	(*entity)->y = 0;
 	(*entity)->img = NULL;
-	(*entity)->texture = NULL;				
+	(*entity)->texture = NULL;
+	(*entity)->xpm = NULL;				
 }
 
 

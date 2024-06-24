@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 10:43:26 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/20 21:43:55 by yasamankari   ########   odam.nl         */
+/*   Updated: 2024/06/24 14:28:19 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #define SO_LONG_H
 
 #include "MLX42.h"
-#include "get_next_line.h"
+#include "../lib/get_next_line/include/get_next_line.h"
 #include "libft.h"
-#include "utils.h"
+//#include "utils.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -50,6 +50,7 @@ typedef struct		s_entity
 	int				y;
 	mlx_image_t		*img;
 	mlx_texture_t	*texture;
+	xpm_t			*xpm;
 	
 }					t_entity;
 
@@ -115,8 +116,8 @@ int			count_component(t_map *map_data, int component);
 bool		is_rectangular(t_map *map_data);
 bool		is_walled(t_map *map_data);
 bool		invalid_components(t_map *map_data);
-bool		is_valid_path(t_map *map_data);
-void		dfs(t_map *map_data, int x, int y, char *obstacle, int fill);
+// bool		is_valid_path(t_map *map_data);
+// void		dfs(t_map *map_data, int x, int y, int obstacle, int fill);
 
 
 

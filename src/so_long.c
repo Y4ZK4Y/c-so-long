@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/31 12:43:57 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/19 10:38:28 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/06/24 13:36:28 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,6 @@ int	so_long(t_game *game)
 
 	//mlx_loop_hook();
 	mlx_loop(game->mlx);
-	
 	remove_images(game);
-	
 	return (0);
 }

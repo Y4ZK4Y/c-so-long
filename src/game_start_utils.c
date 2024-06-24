@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/06/12 13:11:01 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/20 21:36:14 by yasamankari   ########   odam.nl         */
+/*   Updated: 2024/06/24 13:38:53 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	get_pos(t_map *map, char character, char coordinate)
 	while (y < map->rows)
 	{
 		x = 0;
-		while (x < >map->cols)
+		while (x < map->cols)
 		{
 			if (map->map_input[y][x] == character)
 			{

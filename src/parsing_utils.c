@@ -6,47 +6,45 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 16:52:55 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/20 21:43:44 by yasamankari   ########   odam.nl         */
+/*   Updated: 2024/06/24 14:18:30 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../include/so_long.h"
 
 
-void	dfs(t_map *map_data, int x, int y, char *obstacle, int fill)
-{
-	int n;
-	int m;
-	int x;
-	int y;
-	n = map_data->rows;
-	m = map_data->cols;
-	x = map_data->
-	if (x < 0 || y < 0 || x >= map_data->rows || y >= map_data->cols)
-		return ;
-	if (map_data->map_input[x][y] != background)
-		return ;
-	map_data->map_input[x][y] = fill;
-	dfs(map_data, x + 1, y, background, fill);
-	dfs(map_data, x - 1, y, background, fill);
-	dfs(map_data, x, y + 1, background, fill);
-	dfs(map_data, x, y - 1, background, fill);
-}
+// void	dfs(t_map *map_data, int x, int y, int obstacle, int fill)
+// {
+// 	int n;
+// 	int m;
+	
+// 	n = map_data->rows;
+// 	m = map_data->cols;
+// 	//x = map_data->
+// 	if (x < 0 || y < 0 || x >= map_data->rows || y >= map_data->cols)
+// 		return ;
+// 	if (map_data->map_input[x][y] != background)
+// 		return ;
+// 	map_data->map_input[x][y] = fill;
+// 	dfs(map_data, x + 1, y, background, fill);
+// 	dfs(map_data, x - 1, y, background, fill);
+// 	dfs(map_data, x, y + 1, background, fill);
+// 	dfs(map_data, x, y - 1, background, fill);
+// }
 
-// floodfill for path finding */
-bool	is_valid_path(t_map *map_data)
-{
-	int	x;
-	int	y;
-	char	*obstacle;
-	x = get_pos(map_data, '1', 'x');
-	y = get_pos(map_data, '1', 'y');
-	obstacle = '1';
+// /* floodfill for path finding */
+// bool	is_valid_path(t_map *map_data)
+// {
+// 	int	x;
+// 	int	y;
+// 	x = get_pos(map_data, 'P', 'x');
+// 	y = get_pos(map_data, 'P', 'y');
+// 	int background = '0';
 
-	if (map_data->map_input[x][y] == obstacle)
-		return (false);
-	dfs(map_data, x, y, obstacle, '2');
-}
+// 	if (map_data->map_input[x][y] == obstacle)
+// 		return (false);
+// 	dfs(map_data, x, y, background, '2');
+// }
 
 
 
