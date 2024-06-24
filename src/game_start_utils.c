@@ -6,23 +6,25 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/06/12 13:11:01 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/19 10:16:09 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/06/20 21:36:14 by yasamankari   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 
-int	get_pos(t_game *game, char character, char coordinate)
+int	get_pos(t_map *map, char character, char coordinate)
 {
-	int x, y;
+	int x;
+	int	y;
+
 	y = 0;
-	while (y < game->map->rows)
+	while (y < map->rows)
 	{
 		x = 0;
-		while (x < game->map->cols)
+		while (x < >map->cols)
 		{
-			if (game->map->map_input[y][x] == character)
+			if (map->map_input[y][x] == character)
 			{
 				if (coordinate == 'x')
 					return x;

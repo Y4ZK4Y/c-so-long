@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 10:43:26 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/19 14:29:29 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/06/20 21:43:55 by yasamankari   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,9 @@ int			count_component(t_map *map_data, int component);
 bool		is_rectangular(t_map *map_data);
 bool		is_walled(t_map *map_data);
 bool		invalid_components(t_map *map_data);
-//bool		is_valid_path(t_map *map_data);
+bool		is_valid_path(t_map *map_data);
+void		dfs(t_map *map_data, int x, int y, char *obstacle, int fill);
+
 
 
 /* Populating the map */
@@ -131,7 +133,7 @@ int			render_window(t_game *game);
 int			load_pngs(t_game *game);
 int			load_images(t_game *game);
 void		populate_game_entities(t_game *game);
-int			get_pos(t_game *game, char character, char coordinate);
+int			get_pos(t_map *map, char character, char coordinate);
 int			count_collectibles(t_game *game);
 void		render_game(t_game *game);
 void		draw_entity(t_game *game, t_entity *entity, int x, int y);

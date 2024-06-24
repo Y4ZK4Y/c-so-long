@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/31 13:27:11 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/19 10:53:15 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/06/20 21:36:01 by yasamankari   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 void	populate_game_entities(t_game *game)
 {
-	game->player->x = get_pos(game, 'P', 'x');
-	game->player->y = get_pos(game, 'P', 'y');
-	game->exit->x = get_pos(game, 'E', 'x');
-	game->exit->y = get_pos(game, 'E', 'y');
+	game->player->x = get_pos(game->map, 'P', 'x');
+	game->player->y = get_pos(game->map, 'P', 'y');
+	game->exit->x = get_pos(game->map, 'E', 'x');
+	game->exit->y = get_pos(game->map, 'E', 'y');
 	game->num_collectibles = count_collectibles(game);
 }
 
