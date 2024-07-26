@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/06/12 13:11:01 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/24 13:38:53 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/07/26 14:46:48 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	get_pos(t_map *map, char character, char coordinate)
 }
 
 
-int	count_collectibles(t_game *game)
+int	count_collectibles(t_map *map)
 {
 	int x;
 	int y;
@@ -48,12 +48,12 @@ int	count_collectibles(t_game *game)
 
 	count = 0;
 	y = 0;
-	while ( y < game->map->rows)
+	while ( y < map->rows)
 	{
 		x = 0;
-		while (x < game->map->cols)
+		while (x < map->cols)
 		{
-			if (game->map->map_input[y][x] == 'C')
+			if (map->map_input[y][x] == 'C')
 				count++;
 			x++;
 		}

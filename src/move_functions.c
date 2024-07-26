@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/06/04 16:30:11 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/19 10:11:38 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/07/22 13:38:23 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	move_right(t_game *game)
 	//printf("Current tile: %c\n", game->map->map_input[game->player->y][game->player->x]);
 	//printf("Next tile: %c\n", *next_tile);
 	
-	if (*next_tile == '1')
+	if (*next_tile == '1' || (*next_tile == 'E' && game->num_collectibles > 0))
 	{
 		return;
 	}
@@ -31,7 +31,7 @@ void	move_right(t_game *game)
 		{
 			game->num_collectibles--;
 		}
-		else if (*next_tile == 'X' && game->num_collectibles == 0)
+		else if (*next_tile == 'E' && game->num_collectibles == 0)
 		{
 			mlx_close_window(game->mlx);
 			return;
@@ -55,7 +55,7 @@ void	move_left(t_game *game)
 	//printf("Current tile: %c\n", game->map->map_input[game->player->y][game->player->x]);
 	//printf("Previous tile: %c\n", *previous_tile);
 
-	if (*previous_tile == '1')
+	if (*previous_tile == '1' || (*previous_tile == 'E' && game->num_collectibles > 0))
 	{
 		return;
 	}
@@ -63,7 +63,7 @@ void	move_left(t_game *game)
 	{
 		if (*previous_tile == 'C')
 			game->num_collectibles--;
-		else if (*previous_tile == 'X' && game->num_collectibles == 0)
+		else if (*previous_tile == 'E' && game->num_collectibles == 0)
 		{
 			mlx_close_window(game->mlx);
 			return;
@@ -87,7 +87,7 @@ void	move_up(t_game *game)
 	//printf("Current tile: %c\n", game->map->map_input[game->player->y][game->player->x]);
 	//printf("Next tile: %c\n", *up_tile);
 	
-	if (*up_tile == '1')
+	if (*up_tile == '1' || (*up_tile == 'X' && game->num_collectibles > 0))
 		return;
 	else
 	{
@@ -95,7 +95,7 @@ void	move_up(t_game *game)
 		{
 			game->num_collectibles--;
 		}
-		else if (*up_tile == 'X' && game->num_collectibles == 0)
+		else if (*up_tile == 'E' && game->num_collectibles == 0)
 		{
 			mlx_close_window(game->mlx);
 			return;
@@ -119,7 +119,7 @@ void move_down(t_game *game)
 	//printf("Current tile: %c\n", game->map->map_input[game->player->y][game->player->x]);
 	//printf("Next tile: %c\n", *down_tile);
 	
-	if (*down_tile == '1')
+	if (*down_tile == '1' || (*down_tile == 'E' && game->num_collectibles > 0))
 	{
 		return;
 	}
@@ -129,7 +129,7 @@ void move_down(t_game *game)
 		{
 			game->num_collectibles--;
 		}
-		else if (*down_tile == 'X' && game->num_collectibles == 0)
+		else if (*down_tile == 'E' && game->num_collectibles == 0)
 		{
 			mlx_close_window(game->mlx);
 			return;

@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/31 12:44:58 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/24 14:28:47 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/07/26 11:44:43 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	init_map(t_map **map)
 	(*map)->map_input = NULL;
 	(*map)->rows = 0;
 	(*map)->cols = 0;
+	(*map)->c = 0;
+	(*map)->foundE = 0;
 }
 
 

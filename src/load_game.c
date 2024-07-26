@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/31 13:27:11 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/24 15:27:50 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/07/26 14:46:23 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	populate_game_entities(t_game *game)
 	game->player->y = get_pos(game->map, 'P', 'y');
 	game->exit->x = get_pos(game->map, 'E', 'x');
 	game->exit->y = get_pos(game->map, 'E', 'y');
-	game->num_collectibles = count_collectibles(game);
+	game->num_collectibles = count_collectibles(game->map);
 }
 
 
@@ -62,15 +62,10 @@ void	pick_entity(t_game *game, int i, int j)
 
 int	load_pngs(t_game *game)
 {
-	game->player->xpm = mlx_load_xpm42("./res/Walk.xpm42");
-	if (game->player->xpm == NULL)
-	{
-		perror("failed player xpm.\n");
+	
+	game->player->texture = mlx_load_png("res/hero.png");
+	if (game->player->texture == NULL)
 		return (1);
-	}
-	// game->player->texture = mlx_load_png("res/hero.png");
-	// if (game->player->texture == NULL)
-	// 	return (1);
 	game->background->texture = mlx_load_png("res/background.png");
 	if (game->background->texture == NULL)
 		return (1);
@@ -89,10 +84,7 @@ int	load_pngs(t_game *game)
 
 int	load_images(t_game *game)
 {
-	// game->player->img = mlx_texture_to_image(game->mlx, game->player->texture);
-	// if (game->player->img == NULL)
-	// 	return (1);
-	game->player->img = mlx_texture_to_image(game->mlx, &(game->player->xpm)->texture);
+	game->player->img = mlx_texture_to_image(game->mlx, game->player->texture);
 	if (game->player->img == NULL)
 		return (1);
 	game->background->img = mlx_texture_to_image(game->mlx, game->background->texture);

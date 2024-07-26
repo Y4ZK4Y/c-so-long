@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 16:35:37 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/19 10:22:01 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/07/26 12:38:24 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ void	print_msg(const char *errmsg)
 }
 
 
-static void	free_nullify(void **thing)
+void	free_nullify(void **thing)
 {
 	free(*thing);
 	*thing = NULL;
 }
 
 
-static void	free_2d(void ***thing)
+void	free_2d(void ***thing)
 {
 	int		i;
 	void	**arr;

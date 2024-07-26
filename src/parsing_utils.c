@@ -6,46 +6,11 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 16:52:55 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/24 14:18:30 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/07/26 17:12:17 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-
-
-// void	dfs(t_map *map_data, int x, int y, int obstacle, int fill)
-// {
-// 	int n;
-// 	int m;
-	
-// 	n = map_data->rows;
-// 	m = map_data->cols;
-// 	//x = map_data->
-// 	if (x < 0 || y < 0 || x >= map_data->rows || y >= map_data->cols)
-// 		return ;
-// 	if (map_data->map_input[x][y] != background)
-// 		return ;
-// 	map_data->map_input[x][y] = fill;
-// 	dfs(map_data, x + 1, y, background, fill);
-// 	dfs(map_data, x - 1, y, background, fill);
-// 	dfs(map_data, x, y + 1, background, fill);
-// 	dfs(map_data, x, y - 1, background, fill);
-// }
-
-// /* floodfill for path finding */
-// bool	is_valid_path(t_map *map_data)
-// {
-// 	int	x;
-// 	int	y;
-// 	x = get_pos(map_data, 'P', 'x');
-// 	y = get_pos(map_data, 'P', 'y');
-// 	int background = '0';
-
-// 	if (map_data->map_input[x][y] == obstacle)
-// 		return (false);
-// 	dfs(map_data, x, y, background, '2');
-// }
-
 
 
 
@@ -127,12 +92,72 @@ bool	is_map_valid(t_map *map_data)
 	if ((count_component(map_data, 'E') != 1) || \
 		(count_component(map_data, 'C') < 1) || \
 		(count_component(map_data, 'P') != 1))
-			return (print_msg("map is not a rectangle."), false);
+			return (print_msg("component count is off."), false);
 	if (is_rectangular(map_data) == false)
 		return (print_msg("map is not a rectangle."), false);
 	if (is_walled(map_data) == false)
 		return (print_msg("map is not surrounded by walls."), false);
-	// if (is_valid_path(map_data) == false)
-	//	return (print_msg("map is not playable."), false);
+
+	flood_fill(map_data);
 	return (true);
 }
+
+
+
+
+int	check_path(t_map *temp, int y, int x)
+{
+	// if (x == 7)
+	// 	printf("%i\n", x);
+	if (x < 0 || y < 0 || x >= temp->cols || y >= temp->rows)
+		return 0;
+	// printf("y: %i x: %i = %c \n", y, x, temp->map_input[y][x]);
+	if (temp->map_input[y][x] == '1')
+		return (0);
+	if (temp->map_input[y][x] == 'C')
+		temp->c--;
+	if (temp->map_input[y][x] == 'E')
+	{
+		temp->foundE = 1;
+		return (0);
+	}
+	temp->map_input[y][x] = '1';
+	if (check_path(temp, y + 1, x) ||
+		check_path(temp, y - 1, x) ||
+		check_path(temp, y, x + 1) || 
+		check_path(temp, y, x - 1))
+			return (1);
+	return (0);
+}
+
+void	flood_fill(t_map *map_data)
+{
+	t_map	temp;
+	int	i;
+	bzero(&temp, sizeof(t_map));
+	temp.rows = map_data->rows;
+	temp.cols = map_data->cols;
+	temp.c = count_collectibles(map_data);
+	int x = get_pos(map_data, 'P', 'x');
+    int y = get_pos(map_data, 'P', 'y');
+	temp.foundE = 0;
+	temp.map_input = NULL;
+	temp.map_input = (char **)malloc((temp.rows + 1) * sizeof(char *));
+	if (!temp.map_input)
+		print_msg("Memory allocation failed");
+	i = 0;
+	while (i < temp.rows)
+	{
+		temp.map_input[i] = ft_strdup(map_data->map_input[i]);
+		i++;
+	}
+	temp.map_input[i] = NULL;
+	check_path(&temp, y, x);
+	if (!(temp.foundE == 1 && temp.c == 0))
+	{
+		print_msg("No valid path available");
+	}
+	free_2d((void ***)&temp.map_input);
+}
+
+
