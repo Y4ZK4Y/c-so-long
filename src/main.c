@@ -6,14 +6,13 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 15:53:07 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/07/26 16:48:28 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/07/28 11:26:35 by yasamankari   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_game	game;
 

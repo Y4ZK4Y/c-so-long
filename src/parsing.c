@@ -6,12 +6,11 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 16:16:09 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/07/26 13:01:25 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/07/28 11:35:44 by yasamankari   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 bool	is_extension_valid(char *filename)
 {
@@ -23,15 +22,12 @@ bool	is_extension_valid(char *filename)
 	return (true);
 }
 
-
-
 bool	is_map_empty(char *map)
 {
 	if (*map == '\0')
 		return (true);
 	return (false);
 }
-
 
 char	*read_input(const char *filename)
 {
@@ -40,7 +36,8 @@ char	*read_input(const char *filename)
 	char	*temp;
 	int		fd;
 
-	if ((fd = open(filename, O_RDONLY)) == -1)
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
 		return (NULL);
 	line_joined = ft_calloc(1, 1);
 	if (!line_joined)
@@ -52,7 +49,7 @@ char	*read_input(const char *filename)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			break;
+			break ;
 		temp = ft_strjoin(line_joined, line);
 		free(line_joined);
 		line_joined = temp;
@@ -61,7 +58,6 @@ char	*read_input(const char *filename)
 	close(fd);
 	return (line_joined);
 }
-
 
 void	parse_input(t_game *game, char *filename)
 {
@@ -81,7 +77,7 @@ void	parse_input(t_game *game, char *filename)
 	if (is_map_empty(map_str) == true)
 		free_game(game, "map is empty.", EXIT_FAILURE, &map_str);
 	if (empty_lines_in_map(map_str) == true)
-		free_game(game, "empty lines in map.", EXIT_FAILURE, &map_str);;
+		free_game(game, "empty lines in map.", EXIT_FAILURE, &map_str);
 	map->map_input = ft_split(map_str, '\n');
 	if (!map->map_input)
 		free_game(game, "ft_split failed.", EXIT_FAILURE, &map_str);

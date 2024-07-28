@@ -6,12 +6,11 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/31 12:44:58 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/07/26 11:44:43 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/07/28 11:24:06 by yasamankari   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 void	init_game_struct(t_game *game)
 {
@@ -26,16 +25,14 @@ void	init_game_struct(t_game *game)
 	game->window = NULL;
 }
 
-
 void	init_map(t_map **map)
 {
 	(*map)->map_input = NULL;
 	(*map)->rows = 0;
 	(*map)->cols = 0;
 	(*map)->c = 0;
-	(*map)->foundE = 0;
+	(*map)->found_e = 0;
 }
-
 
 void	init_entity(t_entity **entity)
 {
@@ -43,13 +40,13 @@ void	init_entity(t_entity **entity)
 	(*entity)->y = 0;
 	(*entity)->img = NULL;
 	(*entity)->texture = NULL;
-	(*entity)->xpm = NULL;				
+	(*entity)->xpm = NULL;
 }
-
 
 int	init_mlx(t_game *game)
 {
-	game->mlx = mlx_init((game->map->cols * PIXEl_SIZE), (game->map->rows * PIXEl_SIZE), "GAME WINDOW", false);
+	game->mlx = mlx_init((game->map->cols * PIXEl_SIZE), \
+	(game->map->rows * PIXEl_SIZE), "GAME WINDOW", false);
 	if (game->mlx == NULL)
 	{
 		print_msg("mlx init failed.");
@@ -57,8 +54,6 @@ int	init_mlx(t_game *game)
 	}
 	return (0);
 }
-
-
 
 int	init(t_game *game)
 {

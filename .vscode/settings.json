@@ -1,8 +1,10 @@
 {
     "files.associations": {
+        "*.ejs": "html",
         "stdlib.h": "c",
         "so_long.h": "c",
         "numbers": "c",
-        "stat.h": "c"
+        "stat.h": "c",
+        "limits.h": "c"
     }
 }

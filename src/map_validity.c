@@ -6,12 +6,11 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/06/11 16:28:51 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/06/18 14:05:48 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/07/28 11:28:04 by yasamankari   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 bool	empty_lines_in_map(char *map_str)
 {
@@ -20,13 +19,13 @@ bool	empty_lines_in_map(char *map_str)
 	i = 0;
 	while (map_str[i])
 	{
-		if (map_str[0] == '\n' || (map_str[i] == '\n' && (map_str[i+1]) == '\n'))
+		if (map_str[0] == '\n' || (map_str[i] == '\n' \
+		&& (map_str[i + 1]) == '\n'))
 			return (true);
 		i++;
 	}
 	return (false);
 }
-
 
 bool	invalid_components(t_map *map_data)
 {

@@ -6,12 +6,11 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/31 13:27:11 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/07/26 14:46:23 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/07/28 11:26:16 by yasamankari   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 void	populate_game_entities(t_game *game)
 {
@@ -22,28 +21,25 @@ void	populate_game_entities(t_game *game)
 	game->num_collectibles = count_collectibles(game->map);
 }
 
-
-void    draw_entity(t_game *game, t_entity *entity, int y, int x)
+void	draw_entity(t_game *game, t_entity *entity, int y, int x)
 {
-	int pixel_x;
-	int pixel_y;
+	int	pixel_x;
+	int	pixel_y;
 
 	if (entity == NULL)
-		{
-			print_msg("Error: Attempted to draw a NULL entity.");
-			return;
-		}
-		if (entity->img == NULL)
-		{
-			print_msg("Error: Entity has no image to draw.");
-			return;
-		}
+	{
+		print_msg("Error: Attempted to draw a NULL entity.");
+		return ;
+	}
+	if (entity->img == NULL)
+	{
+		print_msg("Error: Entity has no image to draw.");
+		return ;
+	}
 	pixel_x = x * PIXEl_SIZE;
 	pixel_y = y * PIXEl_SIZE;
 	mlx_image_to_window(game->mlx, entity->img, pixel_x, pixel_y);
 }
-
-
 
 void	pick_entity(t_game *game, int i, int j)
 {
@@ -58,11 +54,8 @@ void	pick_entity(t_game *game, int i, int j)
 		draw_entity(game, game->player, game->player->y, game->player->x);
 }
 
-
-
 int	load_pngs(t_game *game)
 {
-	
 	game->player->texture = mlx_load_png("res/hero.png");
 	if (game->player->texture == NULL)
 		return (1);
@@ -81,13 +74,13 @@ int	load_pngs(t_game *game)
 	return (0);
 }
 
-
 int	load_images(t_game *game)
 {
 	game->player->img = mlx_texture_to_image(game->mlx, game->player->texture);
 	if (game->player->img == NULL)
 		return (1);
-	game->background->img = mlx_texture_to_image(game->mlx, game->background->texture);
+	game->background->img = mlx_texture_to_image(game->mlx, \
+	game->background->texture);
 	if (game->background->img == NULL)
 		return (1);
 	game->walls->img = mlx_texture_to_image(game->mlx, game->walls->texture);
@@ -96,9 +89,9 @@ int	load_images(t_game *game)
 	game->exit->img = mlx_texture_to_image(game->mlx, game->exit->texture);
 	if (game->exit->img == NULL)
 		return (1);
-	game->collectibles->img = mlx_texture_to_image(game->mlx, game->collectibles->texture);
+	game->collectibles->img = mlx_texture_to_image(game->mlx, \
+	game->collectibles->texture);
 	if (game->collectibles->img == NULL)
 		return (1);
 	return (0);
 }
-

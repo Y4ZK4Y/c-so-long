@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 16:35:37 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/07/26 12:38:24 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/07/28 11:22:28 by yasamankari   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,11 @@ void	print_msg(const char *errmsg)
 	write(STDOUT_FILENO, "\n", 1);
 }
 
-
 void	free_nullify(void **thing)
 {
 	free(*thing);
 	*thing = NULL;
 }
-
 
 void	free_2d(void ***thing)
 {
@@ -51,17 +49,6 @@ void	free_2d(void ***thing)
 	*thing = NULL;
 }
 
-
-
-// / Exit the program as failure.
-// static void ft_error(void)
-// {
-// 	fprintf(stderr, "%s", mlx_strerror(mlx_errno));
-// 	exit(EXIT_FAILURE);
-// }
-
-
-
 void	free_map(t_map *map)
 {
 	int	i;
@@ -74,8 +61,6 @@ void	free_map(t_map *map)
 	}
 }
 
-
-
 void	free_entity(t_entity **entity)
 {
 	if ((*entity)->img != NULL)
@@ -84,7 +69,6 @@ void	free_entity(t_entity **entity)
 		(*entity)->texture = NULL;
 	free(*entity);
 }
-
 
 void	remove_textures(t_game *game)
 {
@@ -95,7 +79,6 @@ void	remove_textures(t_game *game)
 	mlx_delete_texture(game->exit->texture);
 }
 
-
 void	remove_images(t_game *game)
 {
 	mlx_delete_image(game->mlx, game->player->img);
@@ -104,7 +87,6 @@ void	remove_images(t_game *game)
 	mlx_delete_image(game->mlx, game->collectibles->img);
 	mlx_delete_image(game->mlx, game->exit->img);
 }
-
 
 void	free_game(t_game *game, const char *errmsg, int exit_code, char **str)
 {
