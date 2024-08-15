@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 16:52:55 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/07/28 11:33:59 by yasamankari   ########   odam.nl         */
+/*   Updated: 2024/08/15 15:22:59 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,8 @@ bool	is_map_valid(t_map *map_data)
 		return (print_msg("map is not a rectangle."), false);
 	if (is_walled(map_data) == false)
 		return (print_msg("map is not surrounded by walls."), false);
-	flood_fill(map_data);
+	if (flood_fill(map_data) == false)
+		return (print_msg("No valid path available"), false);
 	return (true);
 }
 
@@ -116,7 +117,7 @@ int	check_path(t_map *temp, int y, int x)
 	return (0);
 }
 
-void	flood_fill(t_map *map_data)
+bool	flood_fill(t_map *map_data)
 {
 	t_map	temp;
 	int		i;
@@ -133,7 +134,10 @@ void	flood_fill(t_map *map_data)
 	temp.map_input = NULL;
 	temp.map_input = (char **)malloc((temp.rows + 1) * sizeof(char *));
 	if (!temp.map_input)
+	{
 		print_msg("Memory allocation failed");
+		return (false);
+	}
 	i = 0;
 	while (i < temp.rows)
 	{
@@ -143,6 +147,11 @@ void	flood_fill(t_map *map_data)
 	temp.map_input[i] = NULL;
 	check_path(&temp, y, x);
 	if (!(temp.found_e == 1 && temp.c == 0))
-		print_msg("No valid path available");
+	{
+		// print_msg("No valid path available");
+		free_2d((void ***)&temp.map_input);
+		return (false);
+	}
 	free_2d((void ***)&temp.map_input);
+	return (true);
 }

@@ -9,13 +9,11 @@
             "request": "launch",
             "name": "Debug",
             "program": "${workspaceFolder}/so_long",
-            "args": ["map/testmap.ber"],
+            "args": ["sampl_maps/ex03.ber"],
             "cwd": "${workspaceFolder}"
         }
     ]
 }
-
-char arr[]= ["ls", "cat", "wc"];
 
 
 

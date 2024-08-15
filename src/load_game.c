@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/31 13:27:11 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/07/28 11:26:16 by yasamankari   ########   odam.nl         */
+/*   Updated: 2024/08/15 13:59:37 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	draw_entity(t_game *game, t_entity *entity, int y, int x)
 		print_msg("Error: Entity has no image to draw.");
 		return ;
 	}
-	pixel_x = x * PIXEl_SIZE;
-	pixel_y = y * PIXEl_SIZE;
+	pixel_x = x * PIXEL_SIZE;
+	pixel_y = y * PIXEL_SIZE;
 	mlx_image_to_window(game->mlx, entity->img, pixel_x, pixel_y);
 }
 

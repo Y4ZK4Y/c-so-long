@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 10:43:26 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/07/28 11:21:52 by yasamankari   ########   odam.nl         */
+/*   Updated: 2024/08/15 15:21:12 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int			count_component(t_map *map_data, int component);
 bool		is_rectangular(t_map *map_data);
 bool		is_walled(t_map *map_data);
 bool		invalid_components(t_map *map_data);
-void		flood_fill(t_map *map_data);
+bool		flood_fill(t_map *map_data);
 int			check_path(t_map *temp, int y, int x);
 
 /* Populating the map */
@@ -114,7 +114,7 @@ void		free_game(t_game *game, const char *errmsg, int exit_code, \
 														char **str);
 void		free_entity(t_entity **entity);
 void		free_map(t_map *map);
-void		display_error_exit(const char *errmsg, int exit_code);
+//void		display_error_exit(const char *errmsg, int exit_code);
 void		remove_textures(t_game *game);
 void		remove_images(t_game *game);
 void		print_msg(const char *errmsg);

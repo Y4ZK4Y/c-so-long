@@ -6,18 +6,18 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 16:35:37 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/07/28 11:22:28 by yasamankari   ########   odam.nl         */
+/*   Updated: 2024/08/15 14:10:12 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	display_error_exit(const char *errmsg, int exit_code)
-{
-	if (errmsg != NULL)
-		print_msg(errmsg);
-	exit(exit_code);
-}
+// void	display_error_exit(const char *errmsg, int exit_code)
+// {
+// 	if (errmsg != NULL)
+// 		print_msg(errmsg);
+// 	exit(exit_code);
+// }
 
 void	print_msg(const char *errmsg)
 {
@@ -108,5 +108,8 @@ void	free_game(t_game *game, const char *errmsg, int exit_code, char **str)
 	if (game->exit != NULL)
 		free_entity(&game->exit);
 	if (errmsg != NULL)
-		display_error_exit(errmsg, exit_code);
+		print_msg(errmsg);
+	exit(exit_code);
+	// if (errmsg != NULL)
+	// 	display_error_exit(errmsg, exit_code);
 }

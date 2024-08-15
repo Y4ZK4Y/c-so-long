@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/31 12:44:58 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/07/28 11:24:06 by yasamankari   ########   odam.nl         */
+/*   Updated: 2024/08/15 13:59:21 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	init_entity(t_entity **entity)
 
 int	init_mlx(t_game *game)
 {
-	game->mlx = mlx_init((game->map->cols * PIXEl_SIZE), \
-	(game->map->rows * PIXEl_SIZE), "GAME WINDOW", false);
+	game->mlx = mlx_init((game->map->cols * PIXEL_SIZE), \
+	(game->map->rows * PIXEL_SIZE), "GAME WINDOW", false);
 	if (game->mlx == NULL)
 	{
 		print_msg("mlx init failed.");
