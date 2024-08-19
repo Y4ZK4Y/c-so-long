@@ -6,7 +6,7 @@
 #    By: ykarimi <ykarimi@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/05/29 10:38:04 by ykarimi       #+#    #+#                  #
-#    Updated: 2024/06/19 11:55:40 by ykarimi       ########   odam.nl          #
+#    Updated: 2024/08/19 10:16:22 by ykarimi       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,9 @@ INC_DIR := include
 LIBFT := lib/libft/libft.a
 GNL := lib/get_next_line/get_next_line.a
 MLX42 := lib/MLX42/MLX42.a
-SRCS = $(wildcard $(SRC_DIR)/*.c)
+SRCS = src/error_handling.c src/game_init.c src/game_start_utils.c src/load_game.c \
+		src/main.c src/map_validity.c src/move_functions.c src/parsing_utils.c \
+		src/parsing.c src/populate_map.c src/so_long.c
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRCS))
 MLX42 = lib/MLX42/build/libmlx42.a
 

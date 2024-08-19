@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 15:53:07 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/08/15 14:12:36 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/08/15 18:01:01 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	main(int argc, char **argv)
 	{
 		print_msg("few arguments provided.");
 		exit(EXIT_FAILURE);
-		//display_error_exit("few arguments provided.", EXIT_FAILURE);
 	}
 	init_game_struct(&game);
 	parse_input(&game, argv[1]);

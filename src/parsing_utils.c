@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 16:52:55 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/08/15 15:22:59 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/08/15 18:01:47 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,6 @@ bool	flood_fill(t_map *map_data)
 	check_path(&temp, y, x);
 	if (!(temp.found_e == 1 && temp.c == 0))
 	{
-		// print_msg("No valid path available");
 		free_2d((void ***)&temp.map_input);
 		return (false);
 	}

@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/06/11 16:27:16 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/08/15 15:06:02 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/08/15 18:01:29 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	find_rows(char *map_str)
 {
 	int	row_count;
-	int i;
+	int	i;
 
 	row_count = 0;
 	i = 0;
@@ -26,7 +26,7 @@ int	find_rows(char *map_str)
 		i++;
 	}
 	if (i > 0 && map_str[i - 1] == '\n')
-        row_count--;
+		row_count--;
 	return (row_count + 1);
 }
 

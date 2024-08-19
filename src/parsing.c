@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 16:16:09 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/08/15 14:12:00 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/08/15 18:00:11 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,8 @@ void	parse_input(t_game *game, char *filename)
 	map = malloc(sizeof(t_map));
 	if (!map)
 	{
-		print_msg("memory allocation failed\n");
+		print_msg("memory allocation failed");
 		exit(EXIT_FAILURE);
-		//display_error_exit("memory allocation for map failed.", EXIT_FAILURE);
 	}
 	game->map = map;
 	if (is_extension_valid(filename) == false)

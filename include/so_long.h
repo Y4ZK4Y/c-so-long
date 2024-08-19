@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 10:43:26 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/08/15 15:21:12 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/08/15 18:02:06 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,6 @@ void		free_game(t_game *game, const char *errmsg, int exit_code, \
 														char **str);
 void		free_entity(t_entity **entity);
 void		free_map(t_map *map);
-//void		display_error_exit(const char *errmsg, int exit_code);
 void		remove_textures(t_game *game);
 void		remove_images(t_game *game);
 void		print_msg(const char *errmsg);
