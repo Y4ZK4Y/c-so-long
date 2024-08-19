@@ -6,14 +6,14 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 10:43:26 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/08/15 18:02:06 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/08/19 13:47:01 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
+
 # include "MLX42.h"
-# include "../lib/get_next_line/include/get_next_line.h"
 # include "libft.h"
 # include <stdio.h>
 # include <stdlib.h>
@@ -24,6 +24,7 @@
 # include <string.h>
 # include <fcntl.h>
 # include <sys/stat.h>
+
 # define WINDOW_WIDTH 512
 # define WINDOW_HEIGHT 512
 # define ENTITY_WIDTH 64
@@ -45,20 +46,20 @@ typedef struct s_entity
 	int				y;
 	mlx_image_t		*img;
 	mlx_texture_t	*texture;
-	xpm_t			*xpm;
 }					t_entity;
 
 typedef struct s_game
 {
-	t_map		*map;
-	t_entity	*player;
-	t_entity	*collectibles;
-	int			num_collectibles;
-	t_entity	*background;
-	t_entity	*walls;
-	t_entity	*exit;
-	mlx_t		*mlx;
-	mlx_image_t	*window;
+	t_map			*map;
+	t_entity		*player;
+	t_entity		*collectibles;
+	int				num_collectibles;
+	t_entity		*background;
+	t_entity		*walls;
+	t_entity		*exit;
+	mlx_t			*mlx;
+	mlx_image_t		*window;
+	int				num_moves;
 }				t_game;
 
 /* Initializing */

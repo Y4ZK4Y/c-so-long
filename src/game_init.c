@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/31 12:44:58 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/08/15 13:59:21 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/08/19 11:52:51 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	init_game_struct(t_game *game)
 	game->exit = NULL;
 	game->mlx = NULL;
 	game->window = NULL;
+	game->num_moves = 0;
 }
 
 void	init_map(t_map **map)
@@ -40,7 +41,6 @@ void	init_entity(t_entity **entity)
 	(*entity)->y = 0;
 	(*entity)->img = NULL;
 	(*entity)->texture = NULL;
-	(*entity)->xpm = NULL;
 }
 
 int	init_mlx(t_game *game)

@@ -6,11 +6,23 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/06/04 16:30:11 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/07/28 11:30:20 by yasamankari   ########   odam.nl         */
+/*   Updated: 2024/08/19 13:46:15 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static void	print_moves(int num_moves)
+{
+	char	*move_str;
+
+	move_str = NULL;
+	move_str = ft_itoa(num_moves);
+	write(STDOUT_FILENO, "Number of moves: ", 17);
+	write(STDOUT_FILENO, move_str, ft_strlen(move_str));
+	write(STDOUT_FILENO, "\n", 1);
+	free(move_str);
+}
 
 void	move_right(t_game *game)
 {
@@ -33,6 +45,8 @@ void	move_right(t_game *game)
 		game->player->x++;
 		draw_entity(game, game->player, game->player->y, game->player->x);
 		game->map->map_input[game->player->y][game->player->x] = 'P';
+		game->num_moves++;
+		print_moves(game->num_moves);
 	}
 }
 
@@ -58,6 +72,8 @@ void	move_left(t_game *game)
 		game->player->x--;
 		draw_entity(game, game->player, game->player->y, game->player->x);
 		game->map->map_input[game->player->y][game->player->x] = 'P';
+		game->num_moves++;
+		print_moves(game->num_moves);
 	}
 }
 
@@ -82,6 +98,8 @@ void	move_up(t_game *game)
 		game->player->y--;
 		draw_entity(game, game->player, game->player->y, game->player->x);
 		game->map->map_input[game->player->y][game->player->x] = 'P';
+		game->num_moves++;
+		print_moves(game->num_moves);
 	}
 }
 
@@ -106,5 +124,7 @@ void	move_down(t_game *game)
 		game->player->y++;
 		draw_entity(game, game->player, game->player->y, game->player->x);
 		game->map->map_input[game->player->y][game->player->x] = 'P';
+		game->num_moves++;
+		print_moves(game->num_moves);
 	}
 }

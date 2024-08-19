@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/31 13:27:11 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/08/15 13:59:37 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/08/19 11:13:41 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,19 +56,19 @@ void	pick_entity(t_game *game, int i, int j)
 
 int	load_pngs(t_game *game)
 {
-	game->player->texture = mlx_load_png("res/hero.png");
+	game->player->texture = mlx_load_png("textures/hero.png");
 	if (game->player->texture == NULL)
 		return (1);
-	game->background->texture = mlx_load_png("res/background.png");
+	game->background->texture = mlx_load_png("textures/background.png");
 	if (game->background->texture == NULL)
 		return (1);
-	game->walls->texture = mlx_load_png("res/wall.png");
+	game->walls->texture = mlx_load_png("textures/wall.png");
 	if (game->walls->texture == NULL)
 		return (1);
-	game->exit->texture = mlx_load_png("res/exit.png");
+	game->exit->texture = mlx_load_png("textures/exit.png");
 	if (game->exit->texture == NULL)
 		return (1);
-	game->collectibles->texture = mlx_load_png("res/collectible.png");
+	game->collectibles->texture = mlx_load_png("textures/collectible.png");
 	if (game->collectibles->texture == NULL)
 		return (1);
 	return (0);

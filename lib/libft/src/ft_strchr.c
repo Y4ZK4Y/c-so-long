@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/20 11:22:02 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/05/30 18:06:05 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/08/19 10:55:54 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,14 @@
 ** string, so that if  c  is  specified  as
 ** '\0', these functions return a pointer to the terminator.
 */
+
 #include "libft.h"
 
 char	*ft_strchr(const char *s, int c)
 {
 	char			*string;
 	unsigned char	value;
+
 	if (!s)
 		return (NULL);
 	string = (char *)s;

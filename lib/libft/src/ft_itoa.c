@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/19 16:15:42 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/01/05 18:34:55 by yasamankari   ########   odam.nl         */
+/*   Updated: 2024/08/19 13:43:15 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	*ft_itoa(int n)
 	unsigned int	num;
 
 	length = get_length(n);
-	result = (char *)malloc(sizeof(char) * (length + 1));
+	result = (char *)ft_calloc(sizeof(char), (length + 1));
 	if (!result)
 		return (NULL);
 	result[length] = '\0';

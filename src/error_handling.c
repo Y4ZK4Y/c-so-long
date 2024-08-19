@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 16:35:37 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/08/15 18:00:41 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/08/19 11:30:27 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,53 +14,9 @@
 
 void	print_msg(const char *errmsg)
 {
-	write(STDOUT_FILENO, errmsg, ft_strlen(errmsg));
-	write(STDOUT_FILENO, "\n", 1);
-}
-
-void	free_nullify(void **thing)
-{
-	free(*thing);
-	*thing = NULL;
-}
-
-void	free_2d(void ***thing)
-{
-	int		i;
-	void	**arr;
-
-	i = 0;
-	if (*thing == NULL)
-		return ;
-	arr = *thing;
-	while (arr[i] != NULL)
-	{
-		free_nullify(&arr[i]);
-		i++;
-	}
-	free(arr);
-	*thing = NULL;
-}
-
-void	free_map(t_map *map)
-{
-	int	i;
-
-	i = 0;
-	if (map != NULL)
-	{
-		free_2d((void ***)&map->map_input);
-		free(map);
-	}
-}
-
-void	free_entity(t_entity **entity)
-{
-	if ((*entity)->img != NULL)
-		(*entity)->img = NULL;
-	if ((*entity)->texture != NULL)
-		(*entity)->texture = NULL;
-	free(*entity);
+	write(STDERR_FILENO, "Error: ", 7);
+	write(STDERR_FILENO, errmsg, ft_strlen(errmsg));
+	write(STDERR_FILENO, "\n", 1);
 }
 
 void	remove_textures(t_game *game)

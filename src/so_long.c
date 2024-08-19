@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/31 12:43:57 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/07/28 11:38:38 by yasamankari   ########   odam.nl         */
+/*   Updated: 2024/08/19 11:18:30 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,30 +20,16 @@ void	handle_key_press(mlx_key_data_t keydata, void *param)
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
 	if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS)
-	{
-		print_msg("up.");
 		move_up(game);
-	}
 	else if (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_PRESS)
-	{
-		print_msg("down.");
 		move_down(game);
-	}
 	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
-	{
-		print_msg("right.");
 		move_right(game);
-	}
 	else if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
-	{
-		print_msg("left.");
 		move_left(game);
-	}
 	if (game->num_collectibles == 0 && \
 	game->map->map_input[game->player->y][game->player->x] == 'E')
-	{
 		mlx_close_window(game->mlx);
-	}
 }
 
 void	render_game(t_game *game)
