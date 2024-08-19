@@ -6,7 +6,7 @@
 #    By: ykarimi <ykarimi@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/05/29 10:38:04 by ykarimi       #+#    #+#                  #
-#    Updated: 2024/08/19 10:16:22 by ykarimi       ########   odam.nl          #
+#    Updated: 2024/08/19 10:33:05 by ykarimi       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,12 +24,13 @@ SRC_DIR := src
 INC_DIR := include
 LIBFT := lib/libft/libft.a
 GNL := lib/get_next_line/get_next_line.a
-MLX42 := lib/MLX42/MLX42.a
+#MLX42 := lib/MLX42/MLX42.a
+MLX42 = lib/MLX42/build/libmlx42.a
 SRCS = src/error_handling.c src/game_init.c src/game_start_utils.c src/load_game.c \
 		src/main.c src/map_validity.c src/move_functions.c src/parsing_utils.c \
 		src/parsing.c src/populate_map.c src/so_long.c
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRCS))
-MLX42 = lib/MLX42/build/libmlx42.a
+
 
 all: $(NAME)
 
@@ -38,7 +39,7 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME): $(LIBFT) $(GNL) $(MLX42) $(OBJS) 
-	$(CC) $(CFLAGS) $(INCLUDES) $(MLX42FLAGS) $(OBJS) $(LIBFT) $(GNL) $(MLX42) $(LIBFT) -o $(NAME)
+	$(CC) $(CFLAGS) $(INCLUDES) $(MLX42FLAGS) $(OBJS) $(LIBFT) $(GNL) $(MLX42) -o $(NAME)
 	
 $(LIBFT):
 	$(MAKE) -C lib/libft
@@ -46,11 +47,7 @@ $(LIBFT):
 $(GNL): $(LIBFT)
 	$(MAKE) -C lib/get_next_line
 
-# $(MLX42):
-# 	cd lib/MLX42 && cmake -B build
-# 	# gcc main.c ... libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
-# 	# make -C lib/MLX42
-# 	# cc main.c -Wall -Wextra lib/MLX42/build/libmlx42.a -I[mlx42_folder]/include -ldl -lglfw -pthread -lm
+
 $(MLX42):
 	cd lib/MLX42 && cmake -B build && cmake --build build -j4
 
@@ -62,14 +59,13 @@ clean:
 fclean: clean
 	$(MAKE) -C lib/libft fclean
 	$(MAKE) -C lib/get_next_line fclean
-	rm -f $(NAME).a
+	rm -f $(NAME)
 	
 
 re: fclean all
 
-test:
-	valgrind --leak-check=full --show-leak-kinds=all
+memcheck:
+	valgrind --leak-check=full ./$(NAME)
 
-@printf "OBJS		: $(OBJS)\n"
 	
-.PHONY: $(LIBFT) all clean fclean re
+.PHONY: all clean fclean re $(LIBFT) $(GNL) $(MLX42)
