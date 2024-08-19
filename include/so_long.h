@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 10:43:26 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/08/19 13:47:01 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/08/19 13:49:21 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@
 # include <limits.h>
 # include <stdbool.h>
 # include <unistd.h>
-# include <errno.h>
-# include <string.h>
 # include <fcntl.h>
-# include <sys/stat.h>
 
 # define WINDOW_WIDTH 512
 # define WINDOW_HEIGHT 512
