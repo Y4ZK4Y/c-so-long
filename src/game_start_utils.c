@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/06/12 13:11:01 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/07/28 11:24:54 by yasamankari   ########   odam.nl         */
+/*   Updated: 2024/08/19 14:01:45 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,10 @@ int	render_window(t_game *game)
 	game->window = mlx_new_image(game->mlx, WINDOW_HEIGHT, WINDOW_WIDTH);
 	if (game->window == NULL)
 	{
-		print_msg("rendering a window failed.");
+		print_msg("rendering window failed.");
 		return (1);
 	}
-	mlx_image_to_window(game->mlx, game->window, 0, 0);
+	if (mlx_image_to_window(game->mlx, game->window, 0, 0) < 0)
+		return (1);
 	return (0);
 }

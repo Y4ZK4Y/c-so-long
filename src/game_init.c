@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/31 12:44:58 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/08/19 11:52:51 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/08/19 13:52:35 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,7 @@ int	init_mlx(t_game *game)
 	game->mlx = mlx_init((game->map->cols * PIXEL_SIZE), \
 	(game->map->rows * PIXEL_SIZE), "GAME WINDOW", false);
 	if (game->mlx == NULL)
-	{
-		print_msg("mlx init failed.");
-		return (1);
-	}
+		return (print_msg("mlx init failed."), 1);
 	return (0);
 }
 

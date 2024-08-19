@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/31 13:27:11 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/08/19 11:13:41 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/08/19 13:59:54 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,37 +21,45 @@ void	populate_game_entities(t_game *game)
 	game->num_collectibles = count_collectibles(game->map);
 }
 
-void	draw_entity(t_game *game, t_entity *entity, int y, int x)
+int	draw_entity(t_game *game, t_entity *entity, int y, int x)
 {
 	int	pixel_x;
 	int	pixel_y;
 
 	if (entity == NULL)
 	{
-		print_msg("Error: Attempted to draw a NULL entity.");
-		return ;
+		print_msg("Attempted to draw a NULL entity.");
+		return (1);
 	}
 	if (entity->img == NULL)
 	{
-		print_msg("Error: Entity has no image to draw.");
-		return ;
+		print_msg("Entity has no image to draw.");
+		return (1);
 	}
 	pixel_x = x * PIXEL_SIZE;
 	pixel_y = y * PIXEL_SIZE;
-	mlx_image_to_window(game->mlx, entity->img, pixel_x, pixel_y);
+	if (mlx_image_to_window(game->mlx, entity->img, pixel_x, pixel_y) <  0)
+		return (1);
+	return (0);
 }
 
-void	pick_entity(t_game *game, int i, int j)
+int	pick_entity(t_game *game, int i, int j)
 {
-	draw_entity(game, game->exit, game->exit->y, game->exit->x);
+	if (draw_entity(game, game->exit, game->exit->y, game->exit->x) == 1)
+		return (1);
 	if (game->map->map_input[i][j] == '0')
-		draw_entity(game, game->background, i, j);
+		if (draw_entity(game, game->background, i, j) == 1)
+			return (1);
 	if (game->map->map_input[i][j] == '1')
-		draw_entity(game, game->walls, i, j);
+		if (draw_entity(game, game->walls, i, j) == 1)
+			return (1);
 	if (game->map->map_input[i][j] == 'C')
-		draw_entity(game, game->collectibles, i, j);
+		if (draw_entity(game, game->collectibles, i, j) == 1)
+			return (1);
 	if (game->map->map_input[i][j] == 'P')
-		draw_entity(game, game->player, game->player->y, game->player->x);
+		if (draw_entity(game, game->player, game->player->y, game->player->x) == 1)
+			return (1);
+	return (0);
 }
 
 int	load_pngs(t_game *game)

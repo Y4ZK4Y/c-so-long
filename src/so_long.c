@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/31 12:43:57 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/08/19 11:18:30 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/08/19 14:03:13 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	handle_key_press(mlx_key_data_t keydata, void *param)
 		mlx_close_window(game->mlx);
 }
 
-void	render_game(t_game *game)
+int	render_game(t_game *game)
 {
 	int	i;
 	int	j;
@@ -43,11 +43,13 @@ void	render_game(t_game *game)
 		j = 0;
 		while (j < game->map->cols)
 		{
-			pick_entity(game, i, j);
+			if (pick_entity(game, i, j) == 1)
+				return (1);
 			j++;
 		}
 		i++;
 	}
+	return (0);
 }
 
 int	so_long(t_game *game)
@@ -62,7 +64,8 @@ int	so_long(t_game *game)
 		return ((print_msg("loading images failed.")), 1);
 	remove_textures(game);
 	populate_game_entities(game);
-	render_game(game);
+	if (render_game(game) == 1)
+		return (1);
 	mlx_key_hook(game->mlx, &handle_key_press, game);
 	mlx_loop(game->mlx);
 	remove_images(game);

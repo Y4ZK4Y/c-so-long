@@ -6,7 +6,7 @@
 /*   By: ykarimi <ykarimi@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/29 10:43:26 by ykarimi       #+#    #+#                 */
-/*   Updated: 2024/08/19 13:49:21 by ykarimi       ########   odam.nl         */
+/*   Updated: 2024/08/19 14:03:55 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,9 @@ int			load_images(t_game *game);
 void		populate_game_entities(t_game *game);
 int			get_pos(t_map *map, char character, char coordinate);
 int			count_collectibles(t_map *map);
-void		render_game(t_game *game);
-void		draw_entity(t_game *game, t_entity *entity, int x, int y);
-void		render_game(t_game *game);
-void		pick_entity(t_game *game, int i, int j);
+int			render_game(t_game *game);
+int			draw_entity(t_game *game, t_entity *entity, int x, int y);
+int			pick_entity(t_game *game, int i, int j);
 
 /* Move Functions */
 void		handle_key_press(mlx_key_data_t keydata, void *param);
